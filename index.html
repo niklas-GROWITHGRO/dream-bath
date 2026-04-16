@@ -1013,17 +1013,14 @@
       .process__steps { grid-template-columns: 1fr; gap: 0; }
       .process__steps::before { display: none; }
       .proc-step {
-        display: grid;
-        grid-template-columns: 56px 1fr;
-        gap: 0 24px;
-        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         padding: 0 0 40px;
-        align-items: start;
       }
-      .proc-step__num { margin: 0; }
-      .proc-step__label,
-      .proc-step__title,
-      .proc-step__body { grid-column: 2; }
+      .proc-step__num { margin: 0 auto 20px; }
+      .proc-step__body { text-align: center; }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -1562,7 +1559,7 @@
     @media (max-width: 600px) {
       .footer__top { grid-template-columns: 1fr; gap: 40px; text-align: center; }
       .footer__bottom { flex-direction: column; align-items: center; gap: 8px; text-align: center; }
-      .footer__logo { justify-content: center; }
+      .footer__logo { display: flex; justify-content: center; }
       .footer__social { justify-content: center; }
       .footer__links { align-items: center; }
       .footer__brand-addr { text-align: center; }
@@ -1650,7 +1647,8 @@
         width: 170px;
         height: 170px;
         bottom: -55px;
-        left: -55px;
+        left: 50%;
+        transform: translateX(-50%);
       }
       .circ-badge--hero .circ-badge__logo-img { width: 88px; }
     }
