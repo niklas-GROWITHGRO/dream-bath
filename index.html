@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dream Bath — Award-winning luxury bathroom remodeling in Evansville, IN. Licensed General Contractor. 25+ years of precision craftsmanship. Call (812) 555-0182." />
+  <title>Dream Bath | Luxury Bathroom Remodeling Evansville, IN</title>
+
+  <!-- Fonts: Playfair Display (luxury serif) + DM Sans (clean body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN TOKENS  — RH-level luxury palette
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* Surfaces */
+      --white:       #FFFFFF;
+      --off-white:   #FAFAF8;
+      --cream:       #F5F1EB;
+      --stone:       #EBE5DC;
+      --stone-mid:   #D8D1C6;
+      --stone-dark:  #C4BAB0;
+
+      /* Dark */
+      --charcoal:    #1C1916;
+      --charcoal-mid:#2E2A26;
+      --charcoal-lt: #3D3830;
+      --text:        #2A2520;
+      --text-muted:  #7A7168;
+
+      /* Gold */
+      --gold:        #8898AC;
+      --gold-dark:   #6B7C8F;
+      --gold-light:  #A8B5C3;
+      --gold-ultra:  #D4DAE3;
+
+      /* Fonts */
+      --serif:  'Playfair Display', 'Times New Roman', Georgia, serif;
+      --sans:   'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Radius */
+      --r-sm:  4px;
+      --r:     8px;
+      --r-lg:  16px;
+
+      /* Transitions */
+      --ease:     cubic-bezier(.25,.46,.45,.94);
+      --ease-out: cubic-bezier(.16,1,.3,1);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; font-family: var(--sans); border: none; background: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT UTILITIES
+    ═══════════════════════════════════════════════════════════ */
+    .wrap {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    @media (max-width: 900px) { .wrap { padding: 0 28px; } }
+    @media (max-width: 600px) { .wrap { padding: 0 20px; } }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-label::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    h2.section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.18;
+      letter-spacing: -.01em;
+    }
+    h2.section-h2--light { color: var(--white); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      border-radius: 0;
+      padding: 14px 32px;
+      min-height: 50px;
+      transition: all .28s var(--ease);
+      white-space: nowrap;
+    }
+    /* RH-style: square corners, solid fill */
+    .btn-solid {
+      background: var(--charcoal);
+      color: var(--white);
+      border: 1.5px solid var(--charcoal);
+    }
+    .btn-solid:hover { background: var(--charcoal-lt); border-color: var(--charcoal-lt); }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.5);
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--text);
+    }
+    .btn-outline-dark:hover { background: var(--text); color: var(--white); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+    .d4 { transition-delay: .32s; }
+    .d5 { transition-delay: .40s; }
+    .d6 { transition-delay: .48s; }
+
+    /* ═══════════════════════════════════════════════════════════
+       §1 — NAVIGATION
+       Belle layout: white sticky, logo left, nav center, CTA right
+    ═══════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 900;
+      background: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .nav.solid {
+      border-color: var(--stone);
+      box-shadow: 0 2px 24px rgba(44,40,37,.07);
+    }
+    /* On hero: transparent */
+    .nav.hero-mode {
+      background: linear-gradient(180deg, rgba(28,25,22,.65) 0%, transparent 100%);
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      height: 78px;
+      gap: 40px;
+    }
+    .nav__logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .nav__logo img {
+      height: 38px;
+      width: auto;
+      transition: filter .3s;
+    }
+    .nav.hero-mode .nav__logo img { filter: brightness(0) invert(1); }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav__links a {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .04em;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: var(--gold); }
+    .nav.hero-mode .nav__links a { color: rgba(255,255,255,.75); }
+    .nav.hero-mode .nav__links a:hover { color: var(--white); }
+
+    .nav__right {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav__phone {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .nav__phone:hover { color: var(--gold); }
+    .nav.hero-mode .nav__phone { color: rgba(255,255,255,.8); }
+    .nav.hero-mode .nav__phone:hover { color: var(--white); }
+
+    .nav__cta {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      min-height: 44px;
+      background: var(--charcoal);
+      color: var(--white);
+      border: 1.5px solid var(--charcoal);
+      transition: all .25s;
+    }
+    .nav__cta:hover { background: var(--charcoal-lt); }
+    .nav.hero-mode .nav__cta {
+      background: transparent;
+      border-color: rgba(255,255,255,.5);
+      color: var(--white);
+    }
+    .nav.hero-mode .nav__cta:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
+
+    /* Hamburger */
+    .nav__ham {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px; height: 44px;
+      padding: 8px;
+    }
+    .nav__ham span {
+      display: block;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .nav.hero-mode .nav__ham span { background: var(--white); }
+    .nav__ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__ham.open span:nth-child(2) { opacity: 0; }
+    .nav__ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--stone);
+      padding: 24px 28px 32px;
+      flex-direction: column;
+      gap: 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,.12);
+      z-index: 899;
+    }
+    .nav__drawer.open { display: flex; }
+    .nav__drawer a {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--stone);
+      transition: color .2s;
+    }
+    .nav__drawer a:hover { color: var(--gold); }
+
+    @media (max-width: 960px) {
+      .nav__links { display: none; }
+      .nav__phone { display: none; }
+      .nav__cta { display: none; }
+      .nav__ham { display: flex; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §2 — HERO SLIDER
+       Belle: full-viewport, large bg photo, overlay, centered text,
+       CTA button, cycling slides with dot indicators
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Slide layers — cycling with CSS animation */
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.4s var(--ease);
+    }
+    .hero__slide.active { opacity: 1; }
+
+    .hero__slide--1 {
+      background:
+        linear-gradient(155deg, rgba(28,25,22,.72) 0%, rgba(28,25,22,.55) 100%),
+        url('./hero-slide-1.avif') center/cover no-repeat;
+    }
+    .hero__slide--2 {
+      background:
+        linear-gradient(155deg, rgba(28,25,22,.68) 0%, rgba(28,25,22,.50) 100%),
+        url('./hero-slide-2.avif') center/cover no-repeat;
+    }
+    .hero__slide--3 {
+      background:
+        linear-gradient(155deg, rgba(28,25,22,.75) 0%, rgba(28,25,22,.58) 100%),
+        url('./hero-slide-3.avif') center/cover no-repeat;
+    }
+
+    /* Grain texture overlay */
+    .hero__grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Decorative corner elements (like Belle's SVG shapes) */
+    .hero__deco {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hero__deco--tl {
+      top: 48px; left: 48px;
+      width: 80px; height: 80px;
+      border: 1px solid rgba(184,152,114,.3);
+      border-radius: 50%;
+    }
+    .hero__deco--br {
+      bottom: 80px; right: 48px;
+      width: 56px; height: 56px;
+      border: 1px solid rgba(184,152,114,.25);
+      border-radius: 50%;
+    }
+    .hero__deco--line-l {
+      top: 0; bottom: 0;
+      left: 48px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(184,152,114,.2) 30%, rgba(184,152,114,.2) 70%, transparent 100%);
+    }
+    .hero__deco--line-r {
+      top: 0; bottom: 0;
+      right: 48px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(184,152,114,.18) 30%, rgba(184,152,114,.18) 70%, transparent 100%);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      max-width: 880px;
+      padding: 120px 24px 140px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 28px;
+    }
+    .hero__eyebrow::before,
+    .hero__eyebrow::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--gold-light);
+      opacity: .6;
+    }
+
+    .hero__h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7.5vw, 92px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      margin-bottom: 28px;
+    }
+    .hero__h1 em {
+      font-style: italic;
+      color: var(--gold-ultra);
+    }
+
+    .hero__sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,.62);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 52px;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Dot indicators (Belle's slide nav) */
+    .hero__dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 10px;
+    }
+    .hero__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      border: 1px solid rgba(255,255,255,.4);
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .hero__dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* Scroll hint */
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      right: 48px;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero__scroll-text {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      writing-mode: vertical-rl;
+    }
+    .hero__scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(180deg, rgba(255,255,255,.4) 0%, transparent 100%);
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%, 100% { opacity: .4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(.7); transform-origin: top; }
+    }
+
+    @media (max-width: 600px) {
+      .hero__deco { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §3 — AWARD-WINNING INTRO
+       Belle: 2-col split, text left (credentials list + CTA),
+       large photo right. White/light background.
+    ═══════════════════════════════════════════════════════════ */
+    .intro {
+      background: var(--white);
+      padding: 120px 0;
+    }
+    .intro__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .intro__label { margin-bottom: 18px; }
+    .intro__h2 { margin-bottom: 24px; }
+
+    .intro__body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    /* Credential list — exactly like Belle's bullet credentials */
+    .intro__creds {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 44px;
+      border-top: 1px solid var(--stone);
+    }
+    .intro__cred {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--stone);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: .01em;
+    }
+    .intro__cred-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .intro__cred-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Right: photo with gold accent */
+    .intro__media {
+      position: relative;
+    }
+    .intro__photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--r-sm);
+      background: linear-gradient(145deg, #3c342a 0%, #5a4e3e 35%, #8a7a64 65%, #c0ae90 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(28,25,22,.2);
+    }
+    /* Subtle tile pattern inside photo */
+    .intro__photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 79px, rgba(255,255,255,.04) 80px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 79px, rgba(255,255,255,.04) 80px),
+        linear-gradient(180deg, transparent 50%, rgba(28,25,22,.35) 100%);
+    }
+
+    /* Gold corner accent — like RH's image treatment */
+    .intro__media::before {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      width: 55%;
+      height: 55%;
+      border: 1.5px solid var(--gold);
+      border-radius: var(--r-sm);
+      opacity: .28;
+      z-index: -1;
+    }
+
+    /* Stats floating badge */
+    .intro__badge {
+      position: absolute;
+      top: 32px;
+      right: -24px;
+      background: var(--charcoal);
+      color: var(--white);
+      padding: 22px 28px;
+      border-radius: var(--r-sm);
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(28,25,22,.35);
+      min-width: 148px;
+    }
+    .intro__badge-num {
+      font-family: var(--serif);
+      font-size: 40px;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .intro__badge-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+
+    @media (max-width: 960px) {
+      .intro { padding: 80px 0; }
+      .intro__grid { grid-template-columns: 1fr; gap: 64px; }
+      .intro__badge { right: 0; }
+      .intro__media { max-width: 560px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §4 — SERVICES GRID
+       Belle: centered header + 3-column card grid
+       Each card: tall photo (portrait) + category label + link
+    ═══════════════════════════════════════════════════════════ */
+    .services {
+      background: var(--cream);
+      padding: 120px 0;
+    }
+    .services__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services__header .section-label {
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .services__header .section-label::before { display: none; }
+    .services__header .section-label::after {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .services__intro {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 20px auto 0;
+      line-height: 1.8;
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .svc-card {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-sm);
+      box-shadow: 0 4px 24px rgba(28,25,22,.08);
+      transition: box-shadow .4s var(--ease), transform .4s var(--ease);
+      background: var(--white);
+    }
+    .svc-card:hover {
+      box-shadow: 0 16px 48px rgba(28,25,22,.16);
+      transform: translateY(-6px);
+    }
+
+    .svc-card__image {
+      width: 100%;
+      aspect-ratio: 2/3;     /* Portrait — like Belle's service card */
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-card__image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(28,25,22,.55) 100%);
+      transition: opacity .4s;
+    }
+    .svc-card:hover .svc-card__image::after { opacity: .8; }
+
+    /* Individual card gradients */
+    .svc-card__image--1 {
+      background: linear-gradient(145deg, #e8d8c8 0%, #c8b49a 30%, #a09070 60%, #786050 100%);
+    }
+    .svc-card__image--2 {
+      background: linear-gradient(180deg, #d0ccc8 0%, #b8b0a4 30%, #90887e 60%, #686060 100%);
+    }
+    .svc-card__image--3 {
+      background: linear-gradient(225deg, #cce0e8 0%, #a8c4d0 30%, #7898a8 60%, #506070 100%);
+    }
+
+    .svc-card__inner {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 28px 32px;
+      z-index: 2;
+    }
+    .svc-card__label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .svc-card__title {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .svc-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      transition: gap .2s;
+    }
+    .svc-card:hover .svc-card__link { gap: 10px; }
+    .svc-card__link::after { content: '→'; }
+
+    @media (max-width: 900px) {
+      .services { padding: 80px 0; }
+      .services__grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    }
+    @media (min-width: 600px) and (max-width: 900px) {
+      .services__grid { grid-template-columns: repeat(2, 1fr); max-width: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §5 — OUR DIFFERENCE
+       Belle: 2-col — LEFT has 2 stacked images | RIGHT has
+       3 feature text blocks (title + paragraph each)
+    ═══════════════════════════════════════════════════════════ */
+    .difference {
+      background: var(--white);
+      padding: 120px 0;
+    }
+    .difference__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    /* Left: 2 stacked photos */
+    .difference__photos {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      position: relative;
+    }
+    .difference__photo {
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(28,25,22,.14);
+    }
+    .difference__photo--1 {
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, #d8ccc0 0%, #b8ac9a 40%, #908070 70%, #706050 100%);
+    }
+    .difference__photo--2 {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #c4d8d0 0%, #a4b8b4 40%, #788e8c 70%, #546068 100%);
+      margin-top: 8px;
+    }
+
+    /* Small accent — gold square */
+    .difference__photos::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 80px; height: 80px;
+      border: 1.5px solid var(--gold);
+      opacity: .2;
+      border-radius: var(--r-sm);
+      z-index: -1;
+    }
+
+    /* Right: feature blocks */
+    .difference__features {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      padding-top: 20px;
+    }
+
+    .diff-feature__num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .diff-feature__title {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .diff-feature__body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .difference__header {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .difference { padding: 80px 0; }
+      .difference__grid { grid-template-columns: 1fr; gap: 64px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §6 — OUR PROCESS
+       Belle: Full-width dark bg image, centered header,
+       3 numbered steps in a row
+    ═══════════════════════════════════════════════════════════ */
+    .process {
+      position: relative;
+      padding: 120px 0;
+      overflow: hidden;
+    }
+
+    /* Dark bathroom texture bg */
+    .process__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(155deg, rgba(28,25,22,.92) 0%, rgba(28,25,22,.88) 100%),
+        linear-gradient(225deg, #1a1810 0%, #2e2820 30%, #4a4035 60%, #3a3028 100%);
+    }
+    .process__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(184,152,114,.04) 0px, transparent 1px, transparent 59px, rgba(184,152,114,.04) 60px),
+        repeating-linear-gradient(90deg, rgba(184,152,114,.04) 0px, transparent 1px, transparent 59px, rgba(184,152,114,.04) 60px);
+    }
+
+    .process__inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .process__header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .process__header .section-label {
+      color: var(--gold);
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .process__header .section-label::before { background: var(--gold); }
+    .process__header .section-label::after {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+    .process__sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      max-width: 520px;
+      margin: 20px auto 0;
+      line-height: 1.8;
+    }
+
+    /* Steps row — like Belle's 3-step layout */
+    .process__steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    /* Connecting line */
+    .process__steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,152,114,.3) 20%, rgba(184,152,114,.3) 80%, transparent);
+    }
+
+    .proc-step {
+      text-align: center;
+      padding: 0 32px;
+    }
+
+    .proc-step__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,152,114,.35);
+      background: rgba(184,152,114,.08);
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--gold);
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+      transition: background .3s, border-color .3s;
+    }
+    .proc-step:hover .proc-step__num {
+      background: rgba(184,152,114,.16);
+      border-color: var(--gold);
+    }
+
+    .proc-step__label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .proc-step__title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .proc-step__body {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .process { padding: 80px 0; }
+      .process__steps { grid-template-columns: 1fr; gap: 0; }
+      .process__steps::before { display: none; }
+      .proc-step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 0 24px;
+        text-align: left;
+        padding: 0 0 40px;
+        align-items: start;
+      }
+      .proc-step__num { margin: 0; }
+      .proc-step__label,
+      .proc-step__title,
+      .proc-step__body { grid-column: 2; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §7 — FEATURED PROJECTS
+       Belle: section header + carousel of project tiles
+       Each tile: image + location overlay + play/view icon
+    ═══════════════════════════════════════════════════════════ */
+    .projects {
+      background: var(--off-white);
+      padding: 120px 0;
+    }
+    .projects__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 24px;
+    }
+    .projects__header-left .section-label { margin-bottom: 16px; }
+
+    .projects__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .proj-card {
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(28,25,22,.1);
+      transition: box-shadow .4s var(--ease), transform .4s var(--ease);
+    }
+    .proj-card:hover {
+      box-shadow: 0 16px 48px rgba(28,25,22,.2);
+      transform: translateY(-4px);
+    }
+
+    .proj-card__bg {
+      position: absolute;
+      inset: 0;
+      transition: transform .6s var(--ease);
+    }
+    .proj-card:hover .proj-card__bg { transform: scale(1.04); }
+
+    .proj-card__bg--1 {
+      background: linear-gradient(145deg, #e0d4c4 0%, #c4b09c 40%, #a09070 70%, #806c50 100%);
+    }
+    .proj-card__bg--2 {
+      background: linear-gradient(200deg, #d0d8e0 0%, #b0bcc8 35%, #8898a8 65%, #607080 100%);
+    }
+    .proj-card__bg--3 {
+      background: linear-gradient(160deg, #e8e0d0 0%, #ccc0a8 35%, #a89c88 65%, #887868 100%);
+    }
+    .proj-card__bg--4 {
+      background: linear-gradient(130deg, #d0ccc0 0%, #b8b0a0 35%, #908880 65%, #706862 100%);
+    }
+    .proj-card__bg--5 {
+      background: linear-gradient(225deg, #d8e0d8 0%, #b8c8b8 35%, #8ca88c 65%, #647064 100%);
+    }
+    .proj-card__bg--6 {
+      background: linear-gradient(170deg, #e0d4d8 0%, #c8b8bc 35%, #a49098 65%, #806874 100%);
+    }
+
+    .proj-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(28,25,22,.72) 100%);
+      transition: background .4s;
+    }
+    .proj-card:hover .proj-card__overlay {
+      background: linear-gradient(180deg, rgba(28,25,22,.15) 0%, rgba(28,25,22,.8) 100%);
+    }
+
+    .proj-card__info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 24px 28px;
+    }
+    .proj-card__location {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .proj-card__name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .proj-card__tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,.5);
+      margin-top: 4px;
+    }
+
+    /* View all CTA below grid */
+    .projects__cta {
+      text-align: center;
+      margin-top: 52px;
+    }
+
+    @media (max-width: 900px) {
+      .projects { padding: 80px 0; }
+      .projects__header { flex-direction: column; align-items: flex-start; }
+      .projects__grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 600px) and (max-width: 900px) {
+      .projects__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §8 — CLIENT TESTIMONIALS
+       Belle: section header + grid of review/testimonial cards
+    ═══════════════════════════════════════════════════════════ */
+    .testimonials {
+      background: var(--white);
+      padding: 120px 0;
+    }
+    .testimonials__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .testimonials__header .section-label {
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .testimonials__header .section-label::before { display: none; }
+    .testimonials__header .section-label::after {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testi-card {
+      background: var(--cream);
+      border: 1px solid var(--stone);
+      border-radius: var(--r-sm);
+      padding: 44px 40px;
+      position: relative;
+      transition: box-shadow .35s var(--ease), transform .35s var(--ease);
+    }
+    .testi-card:hover {
+      box-shadow: 0 12px 40px rgba(28,25,22,.1);
+      transform: translateY(-4px);
+    }
+
+    .testi-card__quote {
+      font-family: var(--serif);
+      font-size: 120px;
+      color: var(--gold);
+      opacity: .12;
+      position: absolute;
+      top: 8px; right: 28px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .testi-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 22px;
+    }
+    .testi-card__star {
+      width: 14px; height: 14px;
+      fill: var(--gold);
+    }
+
+    .testi-card__text {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .testi-card__rule {
+      width: 28px; height: 1px;
+      background: var(--gold);
+      opacity: .5;
+      margin-bottom: 20px;
+    }
+
+    .testi-card__name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: .02em;
+      margin-bottom: 3px;
+    }
+    .testi-card__loc {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: .03em;
+    }
+
+    /* Aggregate review bar */
+    .testimonials__agg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 56px;
+      padding: 32px 40px;
+      background: var(--cream);
+      border: 1px solid var(--stone);
+      border-radius: var(--r-sm);
+      flex-wrap: wrap;
+    }
+    .testimonials__agg-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .testimonials__agg-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .testimonials__agg-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: .04em;
+    }
+    .testimonials__agg-divider {
+      width: 1px; height: 48px;
+      background: var(--stone-mid);
+    }
+
+    @media (max-width: 900px) {
+      .testimonials { padding: 80px 0; }
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+      .testimonials__agg { gap: 20px; }
+      .testimonials__agg-divider { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §9 — OUR PARTNERS / TRUST BADGES
+       Belle: full-width horizontal logo grid
+    ═══════════════════════════════════════════════════════════ */
+    .partners {
+      background: var(--cream);
+      padding: 80px 0;
+      border-top: 1px solid var(--stone);
+      border-bottom: 1px solid var(--stone);
+    }
+    .partners__header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .partners__label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .partners__logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .partner-logo {
+      flex: 1;
+      min-width: 140px;
+      max-width: 200px;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--stone-mid);
+    }
+    .partner-logo:last-child { border-right: none; }
+    .partner-logo span {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--stone-dark);
+      letter-spacing: .06em;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 700px) {
+      .partners { padding: 60px 0; }
+      .partners__logos { gap: 0; }
+      .partner-logo {
+        min-width: 50%;
+        max-width: 50%;
+        border-bottom: 1px solid var(--stone-mid);
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       §10 — CTA BAND
+    ═══════════════════════════════════════════════════════════ */
+    .cta-band {
+      background: var(--charcoal);
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,152,114,.07) 0%, transparent 70%);
+    }
+    .cta-band__inner { position: relative; z-index: 1; }
+    .cta-band__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      justify-content: center;
+    }
+    .cta-band__label::before,
+    .cta-band__label::after { content: ''; width: 32px; height: 1px; background: var(--gold); opacity: .5; }
+    .cta-band__h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      max-width: 760px;
+      margin: 0 auto 20px;
+    }
+    .cta-band__sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      max-width: 500px;
+      margin: 0 auto 52px;
+      line-height: 1.8;
+    }
+    .cta-band__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) { .cta-band { padding: 80px 0; } }
+
+    /* ═══════════════════════════════════════════════════════════
+       §11 — FOOTER
+       Belle: dark, multi-column with accreditations + awards
+    ═══════════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--charcoal-mid);
+      padding: 80px 0 0;
+    }
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer__logo img {
+      height: 34px; width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .85;
+      margin-bottom: 20px;
+    }
+    .footer__brand-addr {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,.38);
+      line-height: 1.8;
+    }
+    .footer__brand-addr a {
+      color: rgba(255,255,255,.38);
+      transition: color .2s;
+    }
+    .footer__brand-addr a:hover { color: var(--gold-light); }
+
+    .footer__col-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.32);
+      margin-bottom: 24px;
+    }
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer__links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,.55);
+      line-height: 1.5;
+      transition: color .2s;
+    }
+    .footer__links a:hover { color: var(--gold-light); }
+
+    /* Accreditations col — like Belle's trust badges */
+    .footer__badges {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .footer__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm);
+      max-width: 200px;
+    }
+    .footer__badge-icon {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+    }
+    .footer__badge-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer__badge-text {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,.45);
+      line-height: 1.3;
+    }
+
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer__copy {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,.28);
+      letter-spacing: .02em;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer__legal a {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,.28);
+      transition: color .2s;
+    }
+    .footer__legal a:hover { color: rgba(255,255,255,.6); }
+    .footer__powered {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,.25);
+      transition: color .2s;
+    }
+    .footer__powered:hover { color: var(--gold); }
+
+    @media (max-width: 960px) {
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 600px) {
+      .footer__top { grid-template-columns: 1fr; }
+      .footer__bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SCROLL ANCHOR OFFSET
+    ═══════════════════════════════════════════════════════════ */
+    #about, #services, #gallery, #process, #testimonials, #contact {
+      scroll-margin-top: 78px;
+    }
+
+    /* ── DYNAMIC CONTENT FALLBACKS ──────────────────── */
+    .svc-card__image--fallback {
+      background: linear-gradient(145deg, #2a2420 0%, #7a6850 100%);
+    }
+    .proj-card__bg--fallback {
+      background: linear-gradient(145deg, #1e1c18 0%, #685a4a 100%);
+    }
+    .testi-card__star.empty { opacity: 0.2; }
+
+    /* ── CONTACT FORM ────────────────────────────────── */
+    .contact-form {
+      max-width: 560px;
+      margin: 0 auto 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus { border-color: var(--gold); }
+    .contact-form select option { background: var(--charcoal); color: #fff; }
+    .contact-form textarea { resize: vertical; min-height: 100px; }
+    .contact-form__confirm {
+      color: var(--gold-light);
+      text-align: center;
+      font-size: 15px;
+      margin-top: 4px;
+    }
+    @media (max-width: 600px) {
+      .contact-form__row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       §1 — NAVIGATION
+       Sticky white, transparent on hero
+  ══════════════════════════════════════════════ -->
+  <header class="nav hero-mode" id="mainNav" role="banner">
+    <div class="wrap">
+      <div class="nav__inner">
+
+        <a href="/" class="nav__logo" aria-label="Dream Bath — Home">
+          <img src="./dream_bath.svg" alt="Dream Bath" />
+        </a>
+
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Portfolio</a>
+          <a href="#process">Process</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav__right">
+          <a href="tel:+18125550182" class="nav__phone">(812) 555-0182</a>
+          <a href="#contact" class="nav__cta">Get a Free Quote</a>
+          <button class="nav__ham" id="navHam" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <nav class="nav__drawer" id="navDrawer" aria-label="Mobile menu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact" style="font-weight:500;color:var(--gold);">Get a Free Quote →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         §2 — HERO SLIDER
+         Full-viewport, cycling bg, centered serif H1,
+         CTA pair, slide dots, scroll hint
+    ══════════════════════════════════════════════ -->
+    <section class="hero" aria-label="Dream Bath — Luxury Bathroom Remodeling">
+
+      <!-- Background slides -->
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide hero__slide--1 active"></div>
+        <div class="hero__slide hero__slide--2"></div>
+        <div class="hero__slide hero__slide--3"></div>
+      </div>
+
+      <div class="hero__grain" aria-hidden="true"></div>
+
+      <!-- Decorative corners -->
+      <div class="hero__deco hero__deco--tl" aria-hidden="true"></div>
+      <div class="hero__deco hero__deco--br" aria-hidden="true"></div>
+      <div class="hero__deco hero__deco--line-l" aria-hidden="true"></div>
+      <div class="hero__deco hero__deco--line-r" aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="hero__content">
+        <p class="hero__eyebrow reveal">Luxury Bathroom Remodeling · Evansville, IN</p>
+
+        <h1 class="hero__h1 reveal d1" id="hero-h1">
+          Your bathroom,<br>
+          <em>reimagined</em><br>
+          with precision.
+        </h1>
+
+        <p class="hero__sub reveal d2" id="hero-sub">
+          Dream Bath brings 25 years of construction mastery and an artist's eye to every project — bathrooms that are as beautiful as they are enduring.
+        </p>
+
+        <div class="hero__actions reveal d3">
+          <a href="#contact" class="btn btn-gold">Request a Consultation</a>
+          <a href="#gallery" class="btn btn-outline-white">Explore Our Work</a>
+        </div>
+      </div>
+
+      <!-- Slide dots -->
+      <div class="hero__dots" role="tablist" aria-label="Slide navigation">
+        <button class="hero__dot active" aria-label="Slide 1" data-slide="0" role="tab"></button>
+        <button class="hero__dot" aria-label="Slide 2" data-slide="1" role="tab"></button>
+        <button class="hero__dot" aria-label="Slide 3" data-slide="2" role="tab"></button>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-text">Scroll</div>
+        <div class="hero__scroll-line"></div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §3 — AWARD-WINNING INTRO
+         Left: credentials list + CTA | Right: photo + badge
+    ══════════════════════════════════════════════ -->
+    <section class="intro" id="about" aria-label="About Dream Bath">
+      <div class="wrap">
+        <div class="intro__grid">
+
+          <!-- Left: text -->
+          <div>
+            <p class="section-label intro__label reveal">Award-Winning Craftsmanship</p>
+
+            <h2 class="section-h2 intro__h2 reveal d1">
+              Evansville's premier<br>bathroom renovation<br>specialists.
+            </h2>
+
+            <p class="intro__body reveal d2">
+              Since 1999, Dream Bath has transformed hundreds of Evansville homes — from modest refresh projects to complete master suite reinventions. As a licensed General Contractor with over 25 years in residential renovation, we self-perform all critical work in-house, ensuring quality at every stage.
+            </p>
+
+            <!-- Credential list — matching Belle's structured list format -->
+            <ul class="intro__creds reveal d3" aria-label="Credentials and certifications">
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Licensed General Contractor — Indiana
+              </li>
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Fully Bonded &amp; Insured
+              </li>
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                10-Year Workmanship Warranty
+              </li>
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Transparent, Fixed-Price Quotes
+              </li>
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                All Permits Arranged &amp; Code-Compliant
+              </li>
+              <li class="intro__cred">
+                <span class="intro__cred-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                100% Referral-Built Reputation
+              </li>
+            </ul>
+
+            <a href="#contact" class="btn btn-solid reveal d4">Enquire Today</a>
+          </div>
+
+          <!-- Right: photo -->
+          <div class="intro__media reveal d2">
+            <div class="intro__photo" role="img" aria-label="Luxury bathroom renovation by Dream Bath"></div>
+            <div class="intro__badge" aria-label="25 plus years of experience">
+              <div class="intro__badge-num">25+</div>
+              <div class="intro__badge-label">Years of<br>Expertise</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §4 — SERVICES GRID
+         Centered header + 3 tall portrait cards
+    ══════════════════════════════════════════════ -->
+    <section class="services" id="services" aria-label="Our services">
+      <div class="wrap">
+        <header class="services__header">
+          <p class="section-label reveal">Our Services</p>
+          <h2 class="section-h2 reveal d1">Every space. Every vision.<br>Flawlessly executed.</h2>
+          <p class="services__intro reveal d2">
+            From master suite transformations to guest bath makeovers — the same precision and attention to detail on every project.
+          </p>
+        </header>
+
+        <div class="services__grid" id="services-grid">
+          <!-- populated by dynamic loader -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §5 — OUR DIFFERENCE
+         Left: 2 stacked photos | Right: 3 feature blocks
+    ══════════════════════════════════════════════ -->
+    <section class="difference" id="why" aria-label="Why choose Dream Bath">
+      <div class="wrap">
+        <div class="difference__grid">
+
+          <!-- Left: stacked photos -->
+          <div class="difference__photos reveal">
+            <div class="difference__photo difference__photo--1" role="img" aria-label="Finished bathroom renovation project"></div>
+            <div class="difference__photo difference__photo--2" role="img" aria-label="Precision tile installation detail"></div>
+          </div>
+
+          <!-- Right: features -->
+          <div>
+            <div class="difference__header">
+              <p class="section-label reveal" style="margin-bottom:16px;">Our Difference</p>
+              <h2 class="section-h2 reveal d1">Why Evansville homeowners choose us — and refer us.</h2>
+            </div>
+
+            <div class="difference__features">
+
+              <div class="reveal d2">
+                <p class="diff-feature__num">01 — Unmatched Expertise</p>
+                <h3 class="diff-feature__title">25 years. 500+ bathrooms.<br>Zero missed deadlines.</h3>
+                <p class="diff-feature__body">Our team brings deep, in-house expertise across every phase of a renovation — from structural assessment to decorative finishing. No relying on subcontractors. One accountable team from day one to the final reveal.</p>
+              </div>
+
+              <div class="reveal d3">
+                <p class="diff-feature__num">02 — Tailored Solutions</p>
+                <h3 class="diff-feature__title">Your vision, executed precisely<br>to your specification.</h3>
+                <p class="diff-feature__body">We don't offer packages or pre-configured layouts. Every Dream Bath renovation is designed around the specific dimensions, style preferences, and lifestyle needs of the homeowner — then priced transparently before a single wall is touched.</p>
+              </div>
+
+              <div class="reveal d4">
+                <p class="diff-feature__num">03 — Quality Materials</p>
+                <h3 class="diff-feature__title">Trade access to premium<br>tile, stone &amp; fixtures.</h3>
+                <p class="diff-feature__body">Through our longstanding supplier relationships, we offer clients access to wholesale-priced premium tile, natural stone, and fixtures from the industry's top brands — at margins showrooms can't match.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §6 — OUR PROCESS
+         Full-bleed dark bg, centered header,
+         4 numbered steps in a row
+    ══════════════════════════════════════════════ -->
+    <section class="process" id="process" aria-label="Our renovation process">
+      <div class="process__bg" aria-hidden="true"></div>
+      <div class="wrap process__inner">
+
+        <header class="process__header">
+          <p class="section-label reveal" style="justify-content:center;color:var(--gold);">Our Process</p>
+          <h2 class="section-h2 section-h2--light reveal d1">
+            A seamless renovation,<br>from first call to final reveal.
+          </h2>
+          <p class="process__sub reveal d2">
+            Four clear stages. Complete transparency. A bathroom you'll love — delivered on the day we promised.
+          </p>
+        </header>
+
+        <div class="process__steps" role="list">
+
+          <div class="proc-step reveal" role="listitem">
+            <div class="proc-step__num" aria-hidden="true">01</div>
+            <p class="proc-step__label">Discovery</p>
+            <h3 class="proc-step__title">Creating the Master Plan</h3>
+            <p class="proc-step__body">We begin with a no-pressure discovery call to understand your space, style direction, and budget. Our job at this stage is to listen — and make everything feel possible.</p>
+          </div>
+
+          <div class="proc-step reveal d1" role="listitem">
+            <div class="proc-step__num" aria-hidden="true">02</div>
+            <p class="proc-step__label">Assessment</p>
+            <h3 class="proc-step__title">The Choice Is Yours</h3>
+            <p class="proc-step__body">We visit your home, measure, and build a detailed project scope with full transparent pricing. You'll know every cost, every material, and every timeline milestone before we begin.</p>
+          </div>
+
+          <div class="proc-step reveal d2" role="listitem">
+            <div class="proc-step__num" aria-hidden="true">03</div>
+            <p class="proc-step__label">Installation</p>
+            <h3 class="proc-step__title">Let the Magic Begin</h3>
+            <p class="proc-step__body">Our licensed crew arrives on day one and doesn't leave until every tile, fixture, and finish meets our exacting standard. Your renovation is treated like it's our own home.</p>
+          </div>
+
+          <div class="proc-step reveal d3" role="listitem">
+            <div class="proc-step__num" aria-hidden="true">04</div>
+            <p class="proc-step__label">Reveal</p>
+            <h3 class="proc-step__title">Your Dream Delivered</h3>
+            <p class="proc-step__body">We walk you through every detail of the finished space. You don't pay the final invoice until you're completely satisfied. That's our promise — and we've never broken it.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §7 — FEATURED PROJECTS
+         Section header + 2×3 project grid
+    ══════════════════════════════════════════════ -->
+    <section class="projects" id="gallery" aria-label="Featured renovation projects">
+      <div class="wrap">
+
+        <div class="projects__header">
+          <div class="projects__header-left">
+            <p class="section-label reveal">Our Portfolio</p>
+            <h2 class="section-h2 reveal d1">Featured projects.</h2>
+          </div>
+          <a href="#contact" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;">View All Projects</a>
+        </div>
+
+        <div class="projects__grid" id="portfolio-grid">
+          <!-- populated by dynamic loader -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §8 — CLIENT TESTIMONIALS
+         Section header + 3 quote cards + aggregate bar
+    ══════════════════════════════════════════════ -->
+    <section class="testimonials" id="testimonials" aria-label="Client testimonials">
+      <div class="wrap">
+
+        <header class="testimonials__header">
+          <p class="section-label reveal">Client Testimonials</p>
+          <h2 class="section-h2 reveal d1">Our Reviews</h2>
+        </header>
+
+        <div class="testimonials__grid" id="testimonials-grid">
+          <!-- populated by dynamic loader -->
+        </div>
+
+        <!-- Aggregate stats bar -->
+        <div class="testimonials__agg reveal" id="stats-bar" aria-label="Review statistics">
+          <!-- populated by dynamic loader -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §9 — OUR PARTNERS
+         Horizontal logo row — material suppliers
+    ══════════════════════════════════════════════ -->
+    <section class="partners" aria-label="Our material partners">
+      <div class="wrap">
+        <header class="partners__header">
+          <p class="partners__label reveal">Our Preferred Suppliers</p>
+        </header>
+        <div class="partners__logos reveal d1" role="list">
+          <div class="partner-logo" role="listitem"><span>Kohler</span></div>
+          <div class="partner-logo" role="listitem"><span>Moen</span></div>
+          <div class="partner-logo" role="listitem"><span>Porcelanosa</span></div>
+          <div class="partner-logo" role="listitem"><span>Delta</span></div>
+          <div class="partner-logo" role="listitem"><span>American Standard</span></div>
+          <div class="partner-logo" role="listitem"><span>Hansgrohe</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         §10 — CTA BAND
+    ══════════════════════════════════════════════ -->
+    <section class="cta-band" id="contact" aria-label="Contact Dream Bath">
+      <div class="wrap">
+        <div class="cta-band__inner">
+          <p class="cta-band__label reveal">Start Your Project</p>
+          <h2 class="cta-band__h2 reveal d1">
+            Your dream bathroom is<br>one conversation away.
+          </h2>
+          <p class="cta-band__sub reveal d2">
+            No pressure. No surprises. Just honest craftsmanship and a space you'll love for decades. We respond within one business day.
+          </p>
+          <form class="contact-form reveal d3" id="contact-form" novalidate>
+            <div class="contact-form__row">
+              <input type="text" name="name" placeholder="Your name" required>
+              <input type="email" name="email" placeholder="Email address">
+            </div>
+            <div class="contact-form__row">
+              <input type="tel" name="phone" placeholder="Phone number">
+              <select name="service">
+                <option value="">Project type…</option>
+              </select>
+            </div>
+            <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+            <button type="submit" class="btn btn-gold">Send Message</button>
+            <p class="contact-form__confirm" id="form-confirm" style="display:none">
+              Thanks! We'll be in touch within one business day.
+            </p>
+          </form>
+          <div class="cta-band__actions reveal d3" style="margin-top:16px">
+            <a href="tel:+18125550182" id="cta-phone-link" class="btn btn-outline-white">Call (812) 555-0182</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       §11 — FOOTER
+       Dark, multi-column: brand + services + company +
+       accreditations — matching Belle's footer structure
+  ══════════════════════════════════════════════ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="wrap">
+
+      <div class="footer__top">
+
+        <!-- Brand + contact -->
+        <div>
+          <div class="footer__logo">
+            <img src="./dream_bath.svg" alt="Dream Bath" />
+          </div>
+          <address class="footer__brand-addr" style="font-style:normal;">
+            Licensed General Contractor · <span id="footer-state">Indiana</span><br>
+            <span id="footer-city">Evansville, IN</span><br>
+            <a href="tel:+18125550182" id="footer-phone">(812) 555-0182</a><br>
+            <a href="mailto:hello@dreambath.com" id="footer-email">hello@dreambath.com</a><br>
+            <span id="footer-hours">Mon–Fri 8am–6pm</span>
+          </address>
+        </div>
+
+        <!-- Services links -->
+        <div>
+          <p class="footer__col-title">Services</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#services">Full Bathroom Remodel</a></li>
+            <li><a href="#services">Shower Installation</a></li>
+            <li><a href="#services">Tub Replacement</a></li>
+            <li><a href="#services">Tile &amp; Stonework</a></li>
+            <li><a href="#services">Custom Vanities</a></li>
+          </ul>
+        </div>
+
+        <!-- Company links -->
+        <div>
+          <p class="footer__col-title">Company</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#gallery">Portfolio</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Free Quote</a></li>
+          </ul>
+        </div>
+
+        <!-- Accreditations — like Belle's trust column -->
+        <div>
+          <p class="footer__col-title">Accreditations</p>
+          <div class="footer__badges" role="list">
+            <div class="footer__badge" role="listitem">
+              <span class="footer__badge-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+              <span class="footer__badge-text">Licensed GC<br>Indiana</span>
+            </div>
+            <div class="footer__badge" role="listitem">
+              <span class="footer__badge-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span class="footer__badge-text">Bonded &amp;<br>Insured</span>
+            </div>
+            <div class="footer__badge" role="listitem">
+              <span class="footer__badge-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              </span>
+              <span class="footer__badge-text">10-Year<br>Warranty</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Dream Bath LLC · Licensed General Contractor · All Rights Reserved</p>
+        <div class="footer__legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+        <a href="https://readysetgro.io" class="footer__powered" target="_blank" rel="noopener noreferrer">
+          Powered by GRO
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    /* ── NAV STATE ─────────────────────────────────── */
+    const nav = document.getElementById('mainNav');
+    let navTicking = false;
+
+    function updateNavState() {
+      const scrolled = window.scrollY > 60;
+      nav.classList.toggle('hero-mode', !scrolled);
+      nav.classList.toggle('solid', scrolled);
+      navTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!navTicking) {
+        requestAnimationFrame(updateNavState);
+        navTicking = true;
+      }
+    }, { passive: true });
+
+    /* ── HAMBURGER / MOBILE DRAWER ─────────────────── */
+    const ham = document.getElementById('navHam');
+    const drawer = document.getElementById('navDrawer');
+
+    ham.addEventListener('click', () => {
+      const open = ham.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      ham.setAttribute('aria-expanded', String(open));
+      // Lock scroll when drawer open
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        ham.classList.remove('open');
+        drawer.classList.remove('open');
+        ham.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── HERO SLIDER ───────────────────────────────── */
+    const slides = document.querySelectorAll('.hero__slide');
+    const dots = document.querySelectorAll('.hero__dot');
+    let current = 0;
+    let slideTimer;
+
+    function goToSlide(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = idx;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function nextSlide() {
+      goToSlide((current + 1) % slides.length);
+    }
+
+    function startSlider() {
+      slideTimer = setInterval(nextSlide, 5000);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideTimer);
+        goToSlide(i);
+        startSlider();
+      });
+    });
+
+    startSlider();
+
+    /* ── DYNAMIC CONTENT LOADER ────────────────────── */
+    const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
+
+    function makeStar(filled) {
+      return `<svg class="testi-card__star${filled ? '' : ' empty'}" viewBox="0 0 24 24"><path d="${STAR_PATH}"/></svg>`;
+    }
+
+    (async () => {
+      const safe = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+      const [settings, services, portfolio, testimonials] = await Promise.all([
+        fetch('/api/public/settings').then(r => r.json()).catch(() => null),
+        fetch('/api/public/services').then(r => r.json()).catch(() => []),
+        fetch('/api/public/portfolio').then(r => r.json()).catch(() => []),
+        fetch('/api/public/testimonials').then(r => r.json()).catch(() => []),
+      ]);
+
+      // ── Company settings → footer + CTA phone
+      if (settings) {
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+        const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el[attr] = val; };
+        set('footer-state', settings.license_state || 'Indiana');
+        set('footer-city', settings.city || '');
+        set('footer-hours', settings.hours || '');
+        set('footer-phone', settings.phone || '');
+        setAttr('footer-phone', 'href', 'tel:' + (settings.phone || '').replace(/\D/g, ''));
+        set('footer-email', settings.email || '');
+        setAttr('footer-email', 'href', 'mailto:' + (settings.email || ''));
+        if (settings.subheading) set('hero-sub', settings.subheading);
+        // CTA call button
+        const ctaPhone = document.getElementById('cta-phone-link');
+        if (ctaPhone && settings.phone) {
+          ctaPhone.textContent = 'Call ' + settings.phone;
+          ctaPhone.href = 'tel:' + settings.phone.replace(/\D/g, '');
+        }
+        // Stats bar
+        const statsBar = document.getElementById('stats-bar');
+        if (statsBar) {
+          statsBar.innerHTML = [
+            [settings.google_rating, 'Google Rating'],
+            [settings.review_count, 'Verified Reviews'],
+            [settings.satisfaction_rate, 'Satisfaction Rate'],
+            [settings.referral_rate, 'Clients from Referrals'],
+          ].map(([num, label], i) => `
+            ${i > 0 ? '<div class="testimonials__agg-divider" aria-hidden="true"></div>' : ''}
+            <div class="testimonials__agg-item">
+              <span class="testimonials__agg-num">${safe(num)}</span>
+              <span class="testimonials__agg-label">${safe(label)}</span>
+            </div>`).join('');
+        }
+      }
+
+      // ── Services
+      const servicesGrid = document.getElementById('services-grid');
+      if (servicesGrid && services.length) {
+        servicesGrid.innerHTML = services.map((s, i) => `
+          <a href="#contact" class="svc-card reveal${i > 0 ? ' d' + i : ''}">
+            ${s.image_url
+              ? `<div class="svc-card__image" style="background:url('${safe(s.image_url)}') center/cover no-repeat"></div>`
+              : `<div class="svc-card__image svc-card__image--fallback"></div>`}
+            <div class="svc-card__inner">
+              <p class="svc-card__label">${safe(s.label)}</p>
+              <h3 class="svc-card__title">${safe(s.title).replace(/\n/g, '<br>')}</h3>
+              <span class="svc-card__link">Explore</span>
+            </div>
+          </a>`).join('');
+        // Populate service select in contact form
+        const sel = document.querySelector('select[name="service"]');
+        if (sel) services.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.title;
+          opt.textContent = s.title.replace(/\n/g, ' ');
+          sel.appendChild(opt);
+        });
+        // Re-observe new reveal elements
+        if (window._revealObserver) servicesGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
+      }
+
+      // ── Portfolio
+      const portfolioGrid = document.getElementById('portfolio-grid');
+      if (portfolioGrid && portfolio.length) {
+        const delays = ['', ' d1', ' d2', ' d1', ' d2', ' d3'];
+        portfolioGrid.innerHTML = portfolio.map((p, i) => `
+          <article class="proj-card reveal${delays[i] || ''}">
+            ${p.image_url
+              ? `<div class="proj-card__bg" style="background:url('${safe(p.image_url)}') center/cover no-repeat"></div>`
+              : `<div class="proj-card__bg proj-card__bg--fallback"></div>`}
+            <div class="proj-card__overlay"></div>
+            <div class="proj-card__info">
+              <p class="proj-card__location">${safe(p.location)}</p>
+              <h3 class="proj-card__name">${safe(p.title)}</h3>
+              <span class="proj-card__tag">${safe(p.materials)}</span>
+            </div>
+          </article>`).join('');
+        if (window._revealObserver) portfolioGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
+      }
+
+      // ── Testimonials
+      const testiGrid = document.getElementById('testimonials-grid');
+      if (testiGrid && testimonials.length) {
+        testiGrid.innerHTML = testimonials.map((t, i) => {
+          const n = Math.min(5, Math.max(0, parseInt(t.stars) || 5));
+          const starsHtml = Array.from({length: 5}, (_, j) => makeStar(j < n)).join('');
+          return `
+            <article class="testi-card reveal${i > 0 ? ' d' + i : ''}">
+              <div class="testi-card__quote" aria-hidden="true">"</div>
+              <div class="testi-card__stars" aria-label="${n} stars">${starsHtml}</div>
+              <p class="testi-card__text">${safe(t.quote)}</p>
+              <div class="testi-card__rule" aria-hidden="true"></div>
+              <div class="testi-card__name">${safe(t.client_name)}</div>
+              <div class="testi-card__loc">${safe(t.client_location)}</div>
+            </article>`;
+        }).join('');
+        if (window._revealObserver) testiGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
+      }
+
+      // ── Contact form submission
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', async e => {
+          e.preventDefault();
+          const btn = form.querySelector('[type=submit]');
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+          try {
+            const data = Object.fromEntries(new FormData(form));
+            const r = await fetch('/api/public/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            if (r.ok) {
+              form.style.display = 'none';
+              document.getElementById('form-confirm').style.display = 'block';
+            } else {
+              btn.disabled = false;
+              btn.textContent = 'Send Message';
+            }
+          } catch {
+            btn.disabled = false;
+            btn.textContent = 'Send Message';
+          }
+        });
+      }
+    })();
+
+    /* ── REVEAL ANIMATIONS ─────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+
+      window._revealObserver = io;
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('in'));
+    }
+
+    /* ── SMOOTH SCROLL ─────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
