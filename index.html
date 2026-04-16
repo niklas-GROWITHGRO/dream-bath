@@ -354,17 +354,21 @@
     /* Cycling background images — behind everything */
     .hero__bg {
       position: absolute;
-      inset: 0;
+      top: -15%;
+      left: 0;
+      right: 0;
+      height: 130%;
       z-index: 0;
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
       background-size: cover;
       background-position: center;
+      will-change: transform;
     }
     .hero__bg.active { opacity: 1; }
-    .hero__bg--1 { background-image: url('/sites/dream-bath/hero-slide-1.avif'); }
-    .hero__bg--2 { background-image: url('/sites/dream-bath/hero-slide-2.avif'); }
-    .hero__bg--3 { background-image: url('/sites/dream-bath/hero-slide-3.avif'); }
+    .hero__bg--1 { background-image: url('./hero-slide-1.avif'); }
+    .hero__bg--2 { background-image: url('./hero-slide-2.avif'); }
+    .hero__bg--3 { background-image: url('./hero-slide-3.avif'); }
     /* Dark overlay above background, below content */
     .hero__overlay {
       position: absolute;
@@ -422,9 +426,9 @@
       will-change: transform;
     }
     .hero__arch-img.active { opacity: 1; }
-    .hero__arch-img--1 { background-image: url('/sites/dream-bath/hero-slide-1.avif'); }
-    .hero__arch-img--2 { background-image: url('/sites/dream-bath/hero-slide-2.avif'); }
-    .hero__arch-img--3 { background-image: url('/sites/dream-bath/hero-slide-3.avif'); }
+    .hero__arch-img--1 { background-image: url('./hero-slide-1.avif'); }
+    .hero__arch-img--2 { background-image: url('./hero-slide-2.avif'); }
+    .hero__arch-img--3 { background-image: url('./hero-slide-3.avif'); }
     @keyframes hero-zoom {
       from { transform: scale(1); }
       to   { transform: scale(1.08); }
@@ -601,7 +605,7 @@
       width: 100%;
       aspect-ratio: 3/4;
       border-radius: var(--r-sm);
-      background: url('/client-assets/2/brent-carter_1776112078758.avif') center/cover no-repeat;
+      background: url('./client-assets/2/brent-carter_1776112078758.avif') center/cover no-repeat;
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(28,25,22,.2);
@@ -733,7 +737,7 @@
 
     /* Individual card gradients */
     .svc-card__image--1 {
-      background: url('/client-assets/2/IMG_8057_1775672482457.heic') center/cover no-repeat;
+      background: url('./client-assets/2/IMG_8057_1775672482457.heic') center/cover no-repeat;
     }
     .svc-card__image--2 {
       background: linear-gradient(180deg, #d4d8dc 0%, #b4bac0 30%, #8c9298 60%, #686e74 100%);
@@ -1807,7 +1811,7 @@
       <div class="nav__inner">
 
         <a href="/" class="nav__logo" aria-label="Dream Bath — Home">
-          <img src="/sites/dream-bath/dream_bath.svg" alt="Dream Bath" />
+          <img src="./dream_bath.svg" alt="Dream Bath" />
         </a>
 
         <nav class="nav__links" aria-label="Main navigation">
@@ -1904,7 +1908,7 @@
               </text>
             </svg>
           </div>
-          <img class="circ-badge__logo-img" src="/sites/dream-bath/dream_bath.svg" alt="Dream Bath" />
+          <img class="circ-badge__logo-img" src="./dream_bath.svg" alt="Dream Bath" />
         </div>
         </div>
       </div>
@@ -2003,7 +2007,42 @@
         </header>
 
         <div class="services__grid" id="services-grid">
-          <!-- populated by dynamic loader -->
+  <a href="#contact" class="svc-card reveal">
+    <div class="svc-card__image" style="background:url('./client-assets/2/IMG_1887_1775672482431.jpg') center/cover no-repeat"></div>
+    <div class="svc-card__inner">
+      <p class="svc-card__label">Complete Renovation</p>
+      <h3 class="svc-card__title">Full Bathroom<br>Remodeling</h3>
+    </div>
+  </a>
+  <a href="#contact" class="svc-card reveal d1">
+    <div class="svc-card__image" style="background:url('./client-assets/2/IMG_8363_1775672482458.jpg') center/cover no-repeat"></div>
+    <div class="svc-card__inner">
+      <p class="svc-card__label">Shower &amp; Spa</p>
+      <h3 class="svc-card__title">Shower &amp; Wet Room Design</h3>
+    </div>
+  </a>
+  <a href="#contact" class="svc-card reveal d2">
+    <div class="svc-card__image" style="background:url('./client-assets/2/IMG_7836_1775672482453.jpg') center/cover no-repeat"></div>
+    <div class="svc-card__inner">
+      <p class="svc-card__label">Fixtures</p>
+      <h3 class="svc-card__title">Tub Replacement</h3>
+    </div>
+  </a>
+
+          <div class="testimonials__agg-item">
+            <span class="testimonials__agg-num">5.0</span>
+            <span class="testimonials__agg-label">Google Rating</span>
+          </div>
+          <div class="testimonials__agg-divider" aria-hidden="true"></div>
+          <div class="testimonials__agg-item">
+            <span class="testimonials__agg-num">100%</span>
+            <span class="testimonials__agg-label">Satisfaction Rate</span>
+          </div>
+          <div class="testimonials__agg-divider" aria-hidden="true"></div>
+          <div class="testimonials__agg-item">
+            <span class="testimonials__agg-num">8/10</span>
+            <span class="testimonials__agg-label">Clients from Referrals</span>
+          </div>
         </div>
       </div>
     </section>
@@ -2096,6 +2135,30 @@
         </header>
 
         <div class="testimonials__grid" id="testimonials-grid">
+  <article class="testi-card reveal">
+    <div class="testi-card__quote" aria-hidden="true">"</div>
+    <div class="testi-card__stars" aria-label="5 stars"><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+    <p class="testi-card__text">Brent and his team are professional, on time and detail driven. I highly recommend these guys for your next tile project.</p>
+    <div class="testi-card__rule" aria-hidden="true"></div>
+    <div class="testi-card__name">Rick Schilb</div>
+    <div class="testi-card__loc"></div>
+  </article>
+  <article class="testi-card reveal d1">
+    <div class="testi-card__quote" aria-hidden="true">"</div>
+    <div class="testi-card__stars" aria-label="5 stars"><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+    <p class="testi-card__text">Beautiful bathroom remodel. Brent was very detail oriented and was anxious to please. The walkin shower is the best bathing option i have ever had. The rain shower head, personal sprayer, comfortable seating and dimmable lights makes for a pleasurable experience. Thank you Brent!</p>
+    <div class="testi-card__rule" aria-hidden="true"></div>
+    <div class="testi-card__name">Cathy Carter</div>
+    <div class="testi-card__loc"></div>
+  </article>
+  <article class="testi-card reveal d2">
+    <div class="testi-card__quote" aria-hidden="true">"</div>
+    <div class="testi-card__stars" aria-label="5 stars"><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-card__star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+    <p class="testi-card__text">Such a great family owned business! They did a full bathroom remodel for us and installed a tile shower and tub that looks amazing! Would recommend to anyone wanting to find a trustworthy and reliable contractor.</p>
+    <div class="testi-card__rule" aria-hidden="true"></div>
+    <div class="testi-card__name">Hope Carrier</div>
+    <div class="testi-card__loc"></div>
+  </article>
           <!-- populated by dynamic loader -->
         </div>
 
@@ -2120,7 +2183,10 @@
           <p class="cta-band__sub reveal d2">
             No pressure. No surprises. Just honest craftsmanship and a space you'll love for decades. We respond within one business day.
           </p>
-          <form class="contact-form reveal d3" id="contact-form" novalidate>
+          <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Quote Request – Dream Bath">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <div class="contact-form__row">
               <input type="text" name="name" placeholder="Your name" required>
               <input type="email" name="email" placeholder="Email address">
@@ -2129,13 +2195,11 @@
               <input type="tel" name="phone" placeholder="Phone number">
               <select name="service">
                 <option value="">Project type…</option>
+                <option value="Full Bathroom Remodeling">Full Bathroom Remodeling</option><option value="Shower &amp; Wet Room Design">Shower &amp; Wet Room Design</option><option value="Tub Replacement">Tub Replacement</option>
               </select>
             </div>
             <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
             <button type="submit" class="btn btn-gold">Send Message</button>
-            <p class="contact-form__confirm" id="form-confirm" style="display:none">
-              Thanks! We'll be in touch within one business day.
-            </p>
           </form>
         </div>
       </div>
@@ -2251,7 +2315,7 @@
         <!-- Brand + contact -->
         <div>
           <div class="footer__logo">
-            <img src="/sites/dream-bath/dream_bath.svg" alt="Dream Bath" />
+            <img src="./dream_bath.svg" alt="Dream Bath" />
           </div>
           <address class="footer__brand-addr" style="font-style:normal;">
             Licensed General Contractor · <span id="footer-state">Indiana</span><br>
@@ -2280,7 +2344,7 @@
             <li><a href="#services">Full Bathroom Remodel</a></li>
             <li><a href="#services">Shower Installation</a></li>
             <li><a href="#services">Tub Replacement</a></li>
-            <li><a href="#services">Tile &amp; Stonework</a></li>
+            <li><a href="#services">Tile Work</a></li>
             <li><a href="#services">Custom Vanities</a></li>
           </ul>
         </div>
@@ -2371,137 +2435,18 @@
       }, 3000);
     }());
 
-    /* ── DYNAMIC CONTENT LOADER ────────────────────── */
-    const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
-
-    function makeStar(filled) {
-      return `<svg class="testi-card__star${filled ? '' : ' empty'}" viewBox="0 0 24 24"><path d="${STAR_PATH}"/></svg>`;
-    }
-
-    (async () => {
-      const safe = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-
-      const [settings, services, portfolio, testimonials] = await Promise.all([
-        fetch('/api/public/settings').then(r => r.json()).catch(() => null),
-        fetch('/api/public/services').then(r => r.json()).catch(() => []),
-        fetch('/api/public/portfolio').then(r => r.json()).catch(() => []),
-        fetch('/api/public/testimonials').then(r => r.json()).catch(() => []),
-      ]);
-
-      // ── Company settings → footer + CTA phone
-      if (settings) {
-        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-        const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el[attr] = val; };
-        set('footer-state', settings.license_state || 'Indiana');
-        set('footer-city', settings.city || '');
-        set('footer-hours', settings.hours || '');
-        set('footer-phone', settings.phone || '');
-        setAttr('footer-phone', 'href', 'tel:' + (settings.phone || '').replace(/\D/g, ''));
-        set('footer-email', settings.email || '');
-        setAttr('footer-email', 'href', 'mailto:' + (settings.email || ''));
-        if (settings.subheading) set('hero-sub', settings.subheading);
-        // Stats bar
-        const statsBar = document.getElementById('stats-bar');
-        if (statsBar) {
-          statsBar.innerHTML = [
-            [settings.google_rating, 'Google Rating'],
-            [settings.satisfaction_rate, 'Satisfaction Rate'],
-            [settings.referral_rate, 'Clients from Referrals'],
-          ].map(([num, label], i) => `
-            ${i > 0 ? '<div class="testimonials__agg-divider" aria-hidden="true"></div>' : ''}
-            <div class="testimonials__agg-item">
-              <span class="testimonials__agg-num">${safe(num)}</span>
-              <span class="testimonials__agg-label">${safe(label)}</span>
-            </div>`).join('');
-        }
+    /* ── HERO PARALLAX ────────────────────────────────────── */
+    (function () {
+      const bgs = document.querySelectorAll('.hero__bg');
+      if (!bgs.length) return;
+      function applyParallax() {
+        const y = window.scrollY * 0.25;
+        bgs.forEach(function (bg) { bg.style.transform = 'translateY(' + y + 'px)'; });
       }
+      window.addEventListener('scroll', applyParallax, { passive: true });
+    }());
 
-      // ── Services
-      const servicesGrid = document.getElementById('services-grid');
-      if (servicesGrid && services.length) {
-        servicesGrid.innerHTML = services.map((s, i) => `
-          <a href="#contact" class="svc-card reveal${i > 0 ? ' d' + i : ''}">
-            ${s.image_url
-              ? `<div class="svc-card__image" style="background:url('${safe(s.image_url)}') center/cover no-repeat"></div>`
-              : `<div class="svc-card__image svc-card__image--fallback"></div>`}
-            <div class="svc-card__inner">
-              <p class="svc-card__label">${safe(s.label)}</p>
-              <h3 class="svc-card__title">${safe(s.title).replace(/\n/g, '<br>')}</h3>
-            </div>
-          </a>`).join('');
-        // Populate service select in contact form
-        const sel = document.querySelector('select[name="service"]');
-        if (sel) services.forEach(s => {
-          const opt = document.createElement('option');
-          opt.value = s.title;
-          opt.textContent = s.title.replace(/\n/g, ' ');
-          sel.appendChild(opt);
-        });
-        // Re-observe new reveal elements
-        if (window._revealObserver) servicesGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
-      }
-
-      // ── Portfolio
-      const portfolioGrid = document.getElementById('portfolio-grid');
-      if (portfolioGrid && portfolio.length) {
-        const delays = ['', ' d1', ' d2', ' d1', ' d2', ' d3'];
-        portfolioGrid.innerHTML = portfolio.map((p, i) => `
-          <article class="proj-card reveal${delays[i] || ''}">
-            ${p.image_url
-              ? `<div class="proj-card__bg" style="background:url('${safe(p.image_url)}') center/cover no-repeat"></div>`
-              : `<div class="proj-card__bg proj-card__bg--fallback"></div>`}
-          </article>`).join('');
-        if (window._revealObserver) portfolioGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
-      }
-
-      // ── Testimonials
-      const testiGrid = document.getElementById('testimonials-grid');
-      if (testiGrid && testimonials.length) {
-        testiGrid.innerHTML = testimonials.map((t, i) => {
-          const n = Math.min(5, Math.max(0, parseInt(t.stars) || 5));
-          const starsHtml = Array.from({length: 5}, (_, j) => makeStar(j < n)).join('');
-          return `
-            <article class="testi-card reveal${i > 0 ? ' d' + i : ''}">
-              <div class="testi-card__quote" aria-hidden="true">"</div>
-              <div class="testi-card__stars" aria-label="${n} stars">${starsHtml}</div>
-              <p class="testi-card__text">${safe(t.quote)}</p>
-              <div class="testi-card__rule" aria-hidden="true"></div>
-              <div class="testi-card__name">${safe(t.client_name)}</div>
-              <div class="testi-card__loc">${safe(t.client_location)}</div>
-            </article>`;
-        }).join('');
-        if (window._revealObserver) testiGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
-      }
-
-      // ── Contact form submission
-      const form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', async e => {
-          e.preventDefault();
-          const btn = form.querySelector('[type=submit]');
-          btn.disabled = true;
-          btn.textContent = 'Sending…';
-          try {
-            const data = Object.fromEntries(new FormData(form));
-            const r = await fetch('/api/public/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
-            if (r.ok) {
-              form.style.display = 'none';
-              document.getElementById('form-confirm').style.display = 'block';
-            } else {
-              btn.disabled = false;
-              btn.textContent = 'Send Message';
-            }
-          } catch {
-            btn.disabled = false;
-            btn.textContent = 'Send Message';
-          }
-        });
-      }
-    })();
+    /* content pre-rendered */
 
     /* ── REVEAL ANIMATIONS ─────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal');

@@ -354,12 +354,16 @@
     /* Cycling background images — behind everything */
     .hero__bg {
       position: absolute;
-      inset: 0;
+      top: -15%;
+      left: 0;
+      right: 0;
+      height: 130%;
       z-index: 0;
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
       background-size: cover;
       background-position: center;
+      will-change: transform;
     }
     .hero__bg.active { opacity: 1; }
     .hero__bg--1 { background-image: url('/sites/dream-bath/hero-slide-1.avif'); }
@@ -2120,7 +2124,10 @@
           <p class="cta-band__sub reveal d2">
             No pressure. No surprises. Just honest craftsmanship and a space you'll love for decades. We respond within one business day.
           </p>
-          <form class="contact-form reveal d3" id="contact-form" novalidate>
+          <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Quote Request – Dream Bath">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <div class="contact-form__row">
               <input type="text" name="name" placeholder="Your name" required>
               <input type="email" name="email" placeholder="Email address">
@@ -2133,9 +2140,6 @@
             </div>
             <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
             <button type="submit" class="btn btn-gold">Send Message</button>
-            <p class="contact-form__confirm" id="form-confirm" style="display:none">
-              Thanks! We'll be in touch within one business day.
-            </p>
           </form>
         </div>
       </div>
@@ -2280,7 +2284,7 @@
             <li><a href="#services">Full Bathroom Remodel</a></li>
             <li><a href="#services">Shower Installation</a></li>
             <li><a href="#services">Tub Replacement</a></li>
-            <li><a href="#services">Tile &amp; Stonework</a></li>
+            <li><a href="#services">Tile Work</a></li>
             <li><a href="#services">Custom Vanities</a></li>
           </ul>
         </div>
@@ -2371,6 +2375,17 @@
       }, 3000);
     }());
 
+    /* ── HERO PARALLAX ────────────────────────────────────── */
+    (function () {
+      const bgs = document.querySelectorAll('.hero__bg');
+      if (!bgs.length) return;
+      function applyParallax() {
+        const y = window.scrollY * 0.25;
+        bgs.forEach(function (bg) { bg.style.transform = 'translateY(' + y + 'px)'; });
+      }
+      window.addEventListener('scroll', applyParallax, { passive: true });
+    }());
+
     /* ── DYNAMIC CONTENT LOADER ────────────────────── */
     const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
 
@@ -2425,16 +2440,17 @@
               ? `<div class="svc-card__image" style="background:url('${safe(s.image_url)}') center/cover no-repeat"></div>`
               : `<div class="svc-card__image svc-card__image--fallback"></div>`}
             <div class="svc-card__inner">
-              <p class="svc-card__label">${safe(s.label)}</p>
-              <h3 class="svc-card__title">${safe(s.title).replace(/\n/g, '<br>')}</h3>
+              <p class="svc-card__label">${safe(s.label).replace(/\s*&\s*Stone\b.*/i, '')}</p>
+              <h3 class="svc-card__title">${safe(s.title).replace(/\s*&\s*Stonework\b/gi, '').replace(/\n/g, '<br>')}</h3>
             </div>
           </a>`).join('');
         // Populate service select in contact form
         const sel = document.querySelector('select[name="service"]');
         if (sel) services.forEach(s => {
           const opt = document.createElement('option');
-          opt.value = s.title;
-          opt.textContent = s.title.replace(/\n/g, ' ');
+          const cleanTitle = s.title.replace(/\s*&\s*Stonework\b/gi, '');
+          opt.value = cleanTitle;
+          opt.textContent = cleanTitle.replace(/\n/g, ' ');
           sel.appendChild(opt);
         });
         // Re-observe new reveal elements
@@ -2473,34 +2489,6 @@
         if (window._revealObserver) testiGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
       }
 
-      // ── Contact form submission
-      const form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', async e => {
-          e.preventDefault();
-          const btn = form.querySelector('[type=submit]');
-          btn.disabled = true;
-          btn.textContent = 'Sending…';
-          try {
-            const data = Object.fromEntries(new FormData(form));
-            const r = await fetch('/api/public/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
-            if (r.ok) {
-              form.style.display = 'none';
-              document.getElementById('form-confirm').style.display = 'block';
-            } else {
-              btn.disabled = false;
-              btn.textContent = 'Send Message';
-            }
-          } catch {
-            btn.disabled = false;
-            btn.textContent = 'Send Message';
-          }
-        });
-      }
     })();
 
     /* ── REVEAL ANIMATIONS ─────────────────────────── */
