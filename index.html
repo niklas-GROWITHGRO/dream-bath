@@ -337,9 +337,19 @@
       background: var(--charcoal);
       width: 100%;
       min-height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      overflow: hidden;
+      min-height: 100dvh;
     }
     /* Cycling background images — behind everything */
     .hero__bg {
@@ -505,7 +515,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__inner { grid-template-columns: 1fr; min-height: auto; }
       .hero__text { padding: 110px 28px 36px; }
       .hero__arch-wrap { padding: 0 28px 64px; justify-content: center; }
       .hero__arch { max-width: 520px; aspect-ratio: 3/3.8; border-radius: 800px 800px 0 0; }
@@ -1846,6 +1856,9 @@
       <div class="hero__bg hero__bg--3" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
 
+      <!-- Constrained inner grid -->
+      <div class="hero__inner">
+
       <!-- LEFT: text -->
       <div class="hero__text">
         <p class="hero__eyebrow reveal">Showers &amp; Bathrooms — Remodeling · Evansville, IN</p>
@@ -1895,6 +1908,8 @@
         </div>
         </div>
       </div>
+
+      </div><!-- end .hero__inner -->
 
       <!-- Scroll hint -->
       <div class="hero__scroll" aria-hidden="true">
