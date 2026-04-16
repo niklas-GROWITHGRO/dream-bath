@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dream Bath — Award-winning luxury bathroom remodeling in Evansville, IN. Licensed General Contractor. 25+ years of precision craftsmanship. Call (812) 555-0182." />
-  <title>Dream Bath | Luxury Bathroom Remodeling Evansville, IN</title>
+  <meta name="description" content="Dream Bath — Award-winning bathroom remodeling in Evansville, IN. Licensed General Contractor. 25+ years of precision craftsmanship. Call (812) 455-7384." />
+  <title>Dream Bath | Bathroom Remodeling Evansville, IN</title>
 
   <!-- Fonts: Playfair Display (luxury serif) + DM Sans (clean body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,11 +18,11 @@
     :root {
       /* Surfaces */
       --white:       #FFFFFF;
-      --off-white:   #FAFAF8;
-      --cream:       #F5F1EB;
-      --stone:       #EBE5DC;
-      --stone-mid:   #D8D1C6;
-      --stone-dark:  #C4BAB0;
+      --off-white:   #FFFFFF;
+      --cream:       #FFFFFF;
+      --stone:       #E8E8E8;
+      --stone-mid:   #D4D4D4;
+      --stone-dark:  #9A9A9A;
 
       /* Dark */
       --charcoal:    #1C1916;
@@ -81,6 +81,14 @@
     }
     @media (max-width: 900px) { .wrap { padding: 0 28px; } }
     @media (max-width: 600px) { .wrap { padding: 0 20px; } }
+    @media (max-width: 600px) {
+      .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 54px;
+        white-space: normal;
+      }
+    }
 
     .section-label {
       display: inline-flex;
@@ -109,6 +117,9 @@
       letter-spacing: -.01em;
     }
     h2.section-h2--light { color: var(--white); }
+    .services .section-h2 { color: #ffffff; }
+    .services .section-label { color: rgba(255,255,255,0.7); }
+    .services .services__intro { color: rgba(255,255,255,0.75); }
 
     /* BUTTONS */
     .btn {
@@ -203,7 +214,7 @@
       align-items: center;
     }
     .nav__logo img {
-      height: 38px;
+      height: 60px;
       width: auto;
       transition: filter .3s;
     }
@@ -311,6 +322,7 @@
     .nav__drawer a:hover { color: var(--gold); }
 
     @media (max-width: 960px) {
+      .nav__inner { justify-content: space-between; }
       .nav__links { display: none; }
       .nav__phone { display: none; }
       .nav__cta { display: none; }
@@ -318,119 +330,129 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       §2 — HERO SLIDER
-       Belle: full-viewport, large bg photo, overlay, centered text,
-       CTA button, cycling slides with dot indicators
+       §2 — HERO  (Split: left text / right arch image)
     ═══════════════════════════════════════════════════════════ */
     .hero {
       position: relative;
+      background: var(--charcoal);
       min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      text-align: center;
     }
-
-    /* Slide layers — cycling with CSS animation */
-    .hero__slides {
+    /* Cycling background images — behind everything */
+    .hero__bg {
       position: absolute;
       inset: 0;
       z-index: 0;
-    }
-    .hero__slide {
-      position: absolute;
-      inset: 0;
       opacity: 0;
-      transition: opacity 1.4s var(--ease);
+      transition: opacity 1.2s ease-in-out;
+      background-size: cover;
+      background-position: center;
     }
-    .hero__slide.active { opacity: 1; }
-
-    .hero__slide--1 {
-      background:
-        linear-gradient(155deg, rgba(28,25,22,.72) 0%, rgba(28,25,22,.55) 100%),
-        url('./hero-slide-1.avif') center/cover no-repeat;
-    }
-    .hero__slide--2 {
-      background:
-        linear-gradient(155deg, rgba(28,25,22,.68) 0%, rgba(28,25,22,.50) 100%),
-        url('./hero-slide-2.avif') center/cover no-repeat;
-    }
-    .hero__slide--3 {
-      background:
-        linear-gradient(155deg, rgba(28,25,22,.75) 0%, rgba(28,25,22,.58) 100%),
-        url('./hero-slide-3.avif') center/cover no-repeat;
-    }
-
-    /* Grain texture overlay */
-    .hero__grain {
+    .hero__bg.active { opacity: 1; }
+    .hero__bg--1 { background-image: url('/hero-slide-1.avif'); }
+    .hero__bg--2 { background-image: url('/hero-slide-2.avif'); }
+    .hero__bg--3 { background-image: url('/hero-slide-3.avif'); }
+    /* Dark overlay above background, below content */
+    .hero__overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background: linear-gradient(155deg, rgba(28,25,22,.90) 0%, rgba(28,25,22,.76) 100%);
       pointer-events: none;
     }
 
-    /* Decorative corner elements (like Belle's SVG shapes) */
-    .hero__deco {
-      position: absolute;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .hero__deco--tl {
-      top: 48px; left: 48px;
-      width: 80px; height: 80px;
-      border: 1px solid rgba(184,152,114,.3);
-      border-radius: 50%;
-    }
-    .hero__deco--br {
-      bottom: 80px; right: 48px;
-      width: 56px; height: 56px;
-      border: 1px solid rgba(184,152,114,.25);
-      border-radius: 50%;
-    }
-    .hero__deco--line-l {
-      top: 0; bottom: 0;
-      left: 48px;
-      width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(184,152,114,.2) 30%, rgba(184,152,114,.2) 70%, transparent 100%);
-    }
-    .hero__deco--line-r {
-      top: 0; bottom: 0;
-      right: 48px;
-      width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(184,152,114,.18) 30%, rgba(184,152,114,.18) 70%, transparent 100%);
-    }
-
-    .hero__content {
+    /* ── Left text panel ── */
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(100px,12vh,140px) clamp(28px,4vw,60px) clamp(100px,12vh,140px) clamp(48px,7vw,96px);
       position: relative;
       z-index: 3;
-      max-width: 880px;
-      padding: 120px 24px 140px;
+    }
+    /* Subtle left border accent */
+    .hero__text::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: clamp(24px,3.5vw,48px);
+      width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,.18) 30%, rgba(255,255,255,.18) 70%, transparent 100%);
     }
 
+    /* ── Right arch panel ── */
+    .hero__arch-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 64px 64px 24px;
+      z-index: 3;
+    }
+    .hero__arch {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 3/4.4;
+      border-radius: 1000px 1000px 0 0;
+      overflow: hidden;
+      box-shadow: 0 48px 96px rgba(0,0,0,.55), 0 16px 32px rgba(0,0,0,.3);
+    }
+    /* Arch images — 3 layers cycling in sync with bg */
+    .hero__arch-img {
+      position: absolute;
+      inset: -5%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      animation: hero-zoom 24s ease-in-out infinite alternate;
+      transform-origin: center;
+      will-change: transform;
+    }
+    .hero__arch-img.active { opacity: 1; }
+    .hero__arch-img--1 { background-image: url('/hero-slide-1.avif'); }
+    .hero__arch-img--2 { background-image: url('/hero-slide-2.avif'); }
+    .hero__arch-img--3 { background-image: url('/hero-slide-3.avif'); }
+    @keyframes hero-zoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+    /* Vignette at base of arch */
+    .hero__arch::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(28,25,22,.45) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Eyebrow ── */
     .hero__eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: .22em;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--gold-light);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
-    .hero__eyebrow::before,
-    .hero__eyebrow::after {
+    .hero__eyebrow::before {
       content: '';
-      width: 40px; height: 1px;
+      width: 32px; height: 1px;
       background: var(--gold-light);
       opacity: .6;
+      flex-shrink: 0;
     }
 
+    /* ── H1 ── */
     .hero__h1 {
       font-family: var(--serif);
-      font-size: clamp(48px, 7.5vw, 92px);
+      font-size: clamp(44px, 5.2vw, 80px);
       font-weight: 400;
       color: var(--white);
       line-height: 1.08;
@@ -442,65 +464,34 @@
       color: var(--gold-ultra);
     }
 
+    /* ── Subheading ── */
     .hero__sub {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 300;
-      color: rgba(255,255,255,.62);
-      line-height: 1.75;
-      max-width: 580px;
-      margin: 0 auto 52px;
+      color: rgba(255,255,255,.58);
+      line-height: 1.78;
+      max-width: 420px;
+      margin-bottom: 48px;
     }
 
+    /* ── CTA row ── */
     .hero__actions {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
     }
 
-    /* Dot indicators (Belle's slide nav) */
-    .hero__dots {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      display: flex;
-      gap: 10px;
-    }
-    .hero__dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.35);
-      border: 1px solid rgba(255,255,255,.4);
-      cursor: pointer;
-      transition: background .3s, transform .3s;
-    }
-    .hero__dot.active {
-      background: var(--gold);
-      border-color: var(--gold);
-      transform: scale(1.3);
-    }
-
-    /* Scroll hint */
+    /* ── Scroll hint — bottom left ── */
     .hero__scroll {
       position: absolute;
       bottom: 36px;
-      right: 48px;
+      left: clamp(48px, 7vw, 96px);
       z-index: 4;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
-    }
-    .hero__scroll-text {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.4);
-      writing-mode: vertical-rl;
     }
     .hero__scroll-line {
       width: 1px; height: 40px;
@@ -509,11 +500,27 @@
     }
     @keyframes scrollpulse {
       0%, 100% { opacity: .4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(.7); transform-origin: top; }
+      50%       { opacity: 1;  transform: scaleY(.7); transform-origin: top; }
     }
 
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__text { padding: 110px 28px 36px; }
+      .hero__arch-wrap { padding: 0 28px 64px; justify-content: center; }
+      .hero__arch { max-width: 520px; aspect-ratio: 3/3.8; border-radius: 800px 800px 0 0; }
+    }
     @media (max-width: 600px) {
-      .hero__deco { display: none; }
+      .hero__text { padding: 96px 20px 28px; }
+      .hero__arch-wrap { padding: 0 0 56px; }
+      .hero__arch {
+        max-width: 100%;
+        aspect-ratio: 3/4.2;
+        border-radius: 400px 400px 0 0;
+        box-shadow: 0 32px 64px rgba(0,0,0,.5);
+      }
+      .hero__scroll { display: none; }
+      .hero__actions { flex-direction: column; align-items: stretch; gap: 12px; }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -584,20 +591,17 @@
       width: 100%;
       aspect-ratio: 3/4;
       border-radius: var(--r-sm);
-      background: linear-gradient(145deg, #3c342a 0%, #5a4e3e 35%, #8a7a64 65%, #c0ae90 100%);
+      background: url('/client-assets/2/brent-carter_1776112078758.avif') center/cover no-repeat;
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(28,25,22,.2);
     }
-    /* Subtle tile pattern inside photo */
+    /* Subtle overlay for readability */
     .intro__photo::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 79px, rgba(255,255,255,.04) 80px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 79px, rgba(255,255,255,.04) 80px),
-        linear-gradient(180deg, transparent 50%, rgba(28,25,22,.35) 100%);
+      background: linear-gradient(180deg, transparent 50%, rgba(28,25,22,.35) 100%);
     }
 
     /* Gold corner accent — like RH's image treatment */
@@ -614,31 +618,30 @@
       z-index: -1;
     }
 
-    /* Stats floating badge */
+    /* Founder overlay badge */
     .intro__badge {
       position: absolute;
-      top: 32px;
-      right: -24px;
+      bottom: 28px;
+      right: -20px;
       background: var(--charcoal);
       color: var(--white);
-      padding: 22px 28px;
+      padding: 16px 20px;
       border-radius: var(--r-sm);
-      text-align: center;
-      box-shadow: 0 12px 40px rgba(28,25,22,.35);
+      box-shadow: 0 8px 32px rgba(28,25,22,.45);
       min-width: 148px;
     }
-    .intro__badge-num {
+    .intro__badge-name {
       font-family: var(--serif);
-      font-size: 40px;
+      font-size: 16px;
       font-weight: 500;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 4px;
+      color: var(--white);
+      margin-bottom: 3px;
+      line-height: 1.2;
     }
-    .intro__badge-label {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: .09em;
+    .intro__badge-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .11em;
       text-transform: uppercase;
       color: rgba(255,255,255,.5);
     }
@@ -646,8 +649,8 @@
     @media (max-width: 960px) {
       .intro { padding: 80px 0; }
       .intro__grid { grid-template-columns: 1fr; gap: 64px; }
-      .intro__badge { right: 0; }
       .intro__media { max-width: 560px; }
+      .intro__badge { right: 0; bottom: 20px; }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -656,7 +659,7 @@
        Each card: tall photo (portrait) + category label + link
     ═══════════════════════════════════════════════════════════ */
     .services {
-      background: var(--cream);
+      background: #869BAF;
       padding: 120px 0;
     }
     .services__header {
@@ -720,13 +723,13 @@
 
     /* Individual card gradients */
     .svc-card__image--1 {
-      background: linear-gradient(145deg, #e8d8c8 0%, #c8b49a 30%, #a09070 60%, #786050 100%);
+      background: url('/client-assets/2/IMG_8057_1775672482457.heic') center/cover no-repeat;
     }
     .svc-card__image--2 {
-      background: linear-gradient(180deg, #d0ccc8 0%, #b8b0a4 30%, #90887e 60%, #686060 100%);
+      background: linear-gradient(180deg, #d4d8dc 0%, #b4bac0 30%, #8c9298 60%, #686e74 100%);
     }
     .svc-card__image--3 {
-      background: linear-gradient(225deg, #cce0e8 0%, #a8c4d0 30%, #7898a8 60%, #506070 100%);
+      background: linear-gradient(225deg, #ccd8e0 0%, #a8c0cc 30%, #7898a8 60%, #506070 100%);
     }
 
     .svc-card__inner {
@@ -736,11 +739,11 @@
       z-index: 2;
     }
     .svc-card__label {
-      font-size: 10px;
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: .18em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--gold-light);
+      color: #ffffff;
       margin-bottom: 8px;
     }
     .svc-card__title {
@@ -803,7 +806,7 @@
     }
     .difference__photo--1 {
       aspect-ratio: 4/3;
-      background: linear-gradient(145deg, #d8ccc0 0%, #b8ac9a 40%, #908070 70%, #706050 100%);
+      background: linear-gradient(145deg, #d4d8dc 0%, #b0b8c0 40%, #8890a0 70%, #606870 100%);
     }
     .difference__photo--2 {
       aspect-ratio: 16/9;
@@ -888,8 +891,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        repeating-linear-gradient(0deg, rgba(184,152,114,.04) 0px, transparent 1px, transparent 59px, rgba(184,152,114,.04) 60px),
-        repeating-linear-gradient(90deg, rgba(184,152,114,.04) 0px, transparent 1px, transparent 59px, rgba(184,152,114,.04) 60px);
+        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 59px, rgba(255,255,255,.04) 60px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0px, transparent 1px, transparent 59px, rgba(255,255,255,.04) 60px);
     }
 
     .process__inner {
@@ -933,38 +936,39 @@
     .process__steps::before {
       content: '';
       position: absolute;
-      top: 28px;
-      left: 12%;
-      right: 12%;
+      top: 34px;
+      left: 14%;
+      right: 14%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(184,152,114,.3) 20%, rgba(184,152,114,.3) 80%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35) 15%, rgba(255,255,255,.35) 85%, transparent);
     }
 
     .proc-step {
       text-align: center;
       padding: 0 32px;
     }
+    .proc-step__body { text-align: left; }
 
     .proc-step__num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 56px; height: 56px;
+      width: 68px; height: 68px;
       border-radius: 50%;
-      border: 1px solid rgba(184,152,114,.35);
-      background: rgba(184,152,114,.08);
+      border: 1px solid rgba(255,255,255,.3);
+      background: #1c1916;
       font-family: var(--serif);
-      font-size: 20px;
+      font-size: 28px;
       font-weight: 400;
-      color: var(--gold);
+      color: #ffffff;
       margin: 0 auto 32px;
       position: relative;
       z-index: 1;
       transition: background .3s, border-color .3s;
     }
     .proc-step:hover .proc-step__num {
-      background: rgba(184,152,114,.16);
-      border-color: var(--gold);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.6);
     }
 
     .proc-step__label {
@@ -1054,22 +1058,22 @@
     .proj-card:hover .proj-card__bg { transform: scale(1.04); }
 
     .proj-card__bg--1 {
-      background: linear-gradient(145deg, #e0d4c4 0%, #c4b09c 40%, #a09070 70%, #806c50 100%);
+      background: linear-gradient(145deg, #d8dde2 0%, #b8c0c8 40%, #909aa4 70%, #686e78 100%);
     }
     .proj-card__bg--2 {
       background: linear-gradient(200deg, #d0d8e0 0%, #b0bcc8 35%, #8898a8 65%, #607080 100%);
     }
     .proj-card__bg--3 {
-      background: linear-gradient(160deg, #e8e0d0 0%, #ccc0a8 35%, #a89c88 65%, #887868 100%);
+      background: linear-gradient(160deg, #d4d8dc 0%, #b4bcc4 35%, #8c98a0 65%, #687078 100%);
     }
     .proj-card__bg--4 {
-      background: linear-gradient(130deg, #d0ccc0 0%, #b8b0a0 35%, #908880 65%, #706862 100%);
+      background: linear-gradient(130deg, #d2d6da 0%, #b4bcc4 35%, #8c949c 65%, #686e78 100%);
     }
     .proj-card__bg--5 {
       background: linear-gradient(225deg, #d8e0d8 0%, #b8c8b8 35%, #8ca88c 65%, #647064 100%);
     }
     .proj-card__bg--6 {
-      background: linear-gradient(170deg, #e0d4d8 0%, #c8b8bc 35%, #a49098 65%, #806874 100%);
+      background: linear-gradient(170deg, #d4d8de 0%, #b8bec6 35%, #9098a0 65%, #687078 100%);
     }
 
     .proj-card__overlay {
@@ -1137,9 +1141,11 @@
       text-align: center;
       margin-bottom: 64px;
     }
+    .testimonials__header .section-h2 { color: #869BAF; }
     .testimonials__header .section-label {
       justify-content: center;
       margin-bottom: 16px;
+      color: #869BAF;
     }
     .testimonials__header .section-label::before { display: none; }
     .testimonials__header .section-label::after {
@@ -1155,8 +1161,8 @@
     }
 
     .testi-card {
-      background: var(--cream);
-      border: 1px solid var(--stone);
+      background: #869BAF;
+      border: 1px solid rgba(0,0,0,.08);
       border-radius: var(--r-sm);
       padding: 44px 40px;
       position: relative;
@@ -1193,7 +1199,7 @@
       font-size: 17px;
       font-style: italic;
       font-weight: 400;
-      color: var(--text);
+      color: #ffffff;
       line-height: 1.7;
       margin-bottom: 32px;
     }
@@ -1208,14 +1214,14 @@
     .testi-card__name {
       font-size: 14px;
       font-weight: 500;
-      color: var(--text);
+      color: #ffffff;
       letter-spacing: .02em;
       margin-bottom: 3px;
     }
     .testi-card__loc {
       font-size: 12px;
       font-weight: 300;
-      color: var(--text-muted);
+      color: rgba(255,255,255,.65);
       letter-spacing: .03em;
     }
 
@@ -1227,8 +1233,8 @@
       gap: 32px;
       margin-top: 56px;
       padding: 32px 40px;
-      background: var(--cream);
-      border: 1px solid var(--stone);
+      background: #869BAF;
+      border: none;
       border-radius: var(--r-sm);
       flex-wrap: wrap;
     }
@@ -1242,18 +1248,18 @@
       font-family: var(--serif);
       font-size: 36px;
       font-weight: 500;
-      color: var(--text);
+      color: #ffffff;
     }
     .testimonials__agg-label {
       font-size: 12px;
       font-weight: 400;
-      color: var(--text-muted);
+      color: rgba(255,255,255,.75);
       text-align: center;
       letter-spacing: .04em;
     }
     .testimonials__agg-divider {
       width: 1px; height: 48px;
-      background: var(--stone-mid);
+      background: rgba(255,255,255,.25);
     }
 
     @media (max-width: 900px) {
@@ -1337,7 +1343,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,152,114,.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,.06) 0%, transparent 70%);
     }
     .cta-band__inner { position: relative; z-index: 1; }
     .cta-band__label {
@@ -1392,47 +1398,76 @@
     }
     .footer__top {
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 64px;
       padding-bottom: 64px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
 
     .footer__logo img {
-      height: 34px; width: auto;
+      height: 120px; width: auto;
       filter: brightness(0) invert(1);
-      opacity: .85;
-      margin-bottom: 20px;
+      opacity: 1;
+      margin-bottom: 24px;
     }
     .footer__brand-addr {
       font-size: 13px;
       font-weight: 300;
-      color: rgba(255,255,255,.38);
-      line-height: 1.8;
+      color: #ffffff;
+      line-height: 1.9;
     }
     .footer__brand-addr a {
-      color: rgba(255,255,255,.38);
+      color: #ffffff;
       transition: color .2s;
     }
     .footer__brand-addr a:hover { color: var(--gold-light); }
+
+    /* Social icons row */
+    .footer__social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .footer__social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.2);
+      color: #ffffff;
+      transition: border-color .2s, background .2s;
+    }
+    .footer__social-link:hover {
+      border-color: var(--gold);
+      background: rgba(255,255,255,.12);
+    }
+    .footer__social-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     .footer__col-title {
       font-size: 11px;
       font-weight: 500;
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.32);
+      color: #ffffff;
       margin-bottom: 24px;
     }
     .footer__links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
     .footer__links a {
       font-size: 13px;
       font-weight: 300;
-      color: rgba(255,255,255,.55);
+      color: #ffffff;
       line-height: 1.5;
       transition: color .2s;
     }
@@ -1484,7 +1519,7 @@
     .footer__copy {
       font-size: 12px;
       font-weight: 300;
-      color: rgba(255,255,255,.28);
+      color: #ffffff;
       letter-spacing: .02em;
     }
     .footer__legal {
@@ -1495,24 +1530,196 @@
     .footer__legal a {
       font-size: 12px;
       font-weight: 300;
-      color: rgba(255,255,255,.28);
+      color: #ffffff;
       transition: color .2s;
     }
-    .footer__legal a:hover { color: rgba(255,255,255,.6); }
+    .footer__legal a:hover { color: var(--gold-light); }
     .footer__powered {
       font-size: 12px;
       font-weight: 300;
-      color: rgba(255,255,255,.25);
+      color: rgba(255,255,255,.45);
       transition: color .2s;
     }
     .footer__powered:hover { color: var(--gold); }
 
     @media (max-width: 960px) {
-      .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 48px; }
     }
     @media (max-width: 600px) {
-      .footer__top { grid-template-columns: 1fr; }
+      .footer__top { grid-template-columns: 1fr; gap: 40px; }
       .footer__bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CIRCULAR ROTATING TEXT BADGE
+    ═══════════════════════════════════════════════════════════ */
+    .circ-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      z-index: 3;
+    }
+    /* Hero placement — bottom-right of arch-wrap */
+    .circ-badge--hero {
+      bottom: 40px;
+      right: 40px;
+      width: 200px;
+      height: 200px;
+    }
+    .circ-badge__ring {
+      position: absolute;
+      inset: 0;
+      animation: circ-spin 26s linear infinite;
+      transition: animation-duration .4s;
+    }
+    /* Hover: hero badge speeds up on parent hover */
+    .hero:hover .circ-badge--hero .circ-badge__ring {
+      animation-duration: 10s;
+    }
+    .circ-badge__ring svg { width: 100%; height: 100%; }
+    .circ-badge__dot {
+      position: relative;
+      z-index: 1;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .circ-badge__dot::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .circ-badge__logo-img {
+      position: relative;
+      z-index: 1;
+      width: 110px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+    }
+    @keyframes circ-spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (max-width: 900px) {
+      .circ-badge--hero { bottom: 24px; right: 24px; }
+    }
+    @media (max-width: 768px) {
+      .circ-badge--hero {
+        width: 185px;
+        height: 185px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .circ-badge--hero .circ-badge__logo-img { width: 98px; }
+    }
+    @media (max-width: 600px) {
+      .circ-badge--hero {
+        width: 170px;
+        height: 170px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .circ-badge--hero .circ-badge__logo-img { width: 88px; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FAQ SECTION
+    ═══════════════════════════════════════════════════════════ */
+    .faq {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+    .faq__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .faq__header .section-label {
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .faq__header .section-label::before { display: none; }
+    .faq__header .section-label::after {
+      content: ''; width: 32px; height: 1px;
+      background: var(--gold); opacity: .5;
+    }
+    .faq__list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .faq__item { border-bottom: 1px solid var(--stone); }
+    .faq__item:first-child { border-top: 1px solid var(--stone); }
+    .faq__q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      transition: color .2s;
+    }
+    .faq__q:hover { color: var(--gold-dark); }
+    .faq__icon {
+      position: relative;
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--stone-mid);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .25s, background .25s, transform .35s var(--ease-out);
+    }
+    .faq__icon::before,
+    .faq__icon::after {
+      content: '';
+      position: absolute;
+      background: var(--text-muted);
+      border-radius: 1px;
+      transition: background .25s;
+    }
+    .faq__icon::before { width: 10px; height: 1.5px; }
+    .faq__icon::after  { width: 1.5px; height: 10px; }
+    .faq__item.open .faq__icon {
+      border-color: var(--gold);
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+    .faq__item.open .faq__icon::before,
+    .faq__item.open .faq__icon::after { background: #fff; }
+    .faq__a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s var(--ease-out);
+    }
+    .faq__a-inner {
+      padding: 0 0 24px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 640px;
+    }
+    @media (max-width: 768px) {
+      .faq { padding: 72px 0; }
+      .faq__q { font-size: 16px; padding: 20px 0; }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -1550,10 +1757,10 @@
       width: 100%;
       padding: 12px 16px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
       color: #fff;
-      font: inherit;
+      font-family: var(--sans);
       font-size: 15px;
       outline: none;
       transition: border-color 0.2s;
@@ -1585,7 +1792,7 @@
       <div class="nav__inner">
 
         <a href="/" class="nav__logo" aria-label="Dream Bath — Home">
-          <img src="./dream_bath.svg" alt="Dream Bath" />
+          <img src="/dream_bath.svg" alt="Dream Bath" />
         </a>
 
         <nav class="nav__links" aria-label="Main navigation">
@@ -1598,7 +1805,7 @@
         </nav>
 
         <div class="nav__right">
-          <a href="tel:+18125550182" class="nav__phone">(812) 555-0182</a>
+          <a href="tel:+18124557384" class="nav__phone">(812) 455-7384</a>
           <a href="#contact" class="nav__cta">Get a Free Quote</a>
           <button class="nav__ham" id="navHam" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -1626,26 +1833,17 @@
          Full-viewport, cycling bg, centered serif H1,
          CTA pair, slide dots, scroll hint
     ══════════════════════════════════════════════ -->
-    <section class="hero" aria-label="Dream Bath — Luxury Bathroom Remodeling">
+    <section class="hero" aria-label="Dream Bath — Bathroom Remodeling">
 
-      <!-- Background slides -->
-      <div class="hero__slides" aria-hidden="true">
-        <div class="hero__slide hero__slide--1 active"></div>
-        <div class="hero__slide hero__slide--2"></div>
-        <div class="hero__slide hero__slide--3"></div>
-      </div>
+      <!-- Cycling background layers -->
+      <div class="hero__bg hero__bg--1 active" aria-hidden="true"></div>
+      <div class="hero__bg hero__bg--2" aria-hidden="true"></div>
+      <div class="hero__bg hero__bg--3" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
 
-      <div class="hero__grain" aria-hidden="true"></div>
-
-      <!-- Decorative corners -->
-      <div class="hero__deco hero__deco--tl" aria-hidden="true"></div>
-      <div class="hero__deco hero__deco--br" aria-hidden="true"></div>
-      <div class="hero__deco hero__deco--line-l" aria-hidden="true"></div>
-      <div class="hero__deco hero__deco--line-r" aria-hidden="true"></div>
-
-      <!-- Content -->
-      <div class="hero__content">
-        <p class="hero__eyebrow reveal">Luxury Bathroom Remodeling · Evansville, IN</p>
+      <!-- LEFT: text -->
+      <div class="hero__text">
+        <p class="hero__eyebrow reveal">Showers &amp; Bathrooms — Remodeling · Evansville, IN</p>
 
         <h1 class="hero__h1 reveal d1" id="hero-h1">
           Your bathroom,<br>
@@ -1654,7 +1852,7 @@
         </h1>
 
         <p class="hero__sub reveal d2" id="hero-sub">
-          Dream Bath brings 25 years of construction mastery and an artist's eye to every project — bathrooms that are as beautiful as they are enduring.
+          Dream Bath brings 25 years of construction mastery and an artist's eye to every project — bathrooms as beautiful as they are enduring.
         </p>
 
         <div class="hero__actions reveal d3">
@@ -1663,16 +1861,36 @@
         </div>
       </div>
 
-      <!-- Slide dots -->
-      <div class="hero__dots" role="tablist" aria-label="Slide navigation">
-        <button class="hero__dot active" aria-label="Slide 1" data-slide="0" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 2" data-slide="1" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 3" data-slide="2" role="tab"></button>
+      <!-- RIGHT: arch image + circular badge -->
+      <div class="hero__arch-wrap">
+        <div class="hero__arch" aria-hidden="true">
+          <div class="hero__arch-img hero__arch-img--1 active"></div>
+          <div class="hero__arch-img hero__arch-img--2"></div>
+          <div class="hero__arch-img hero__arch-img--3"></div>
+        </div>
+
+        <div class="circ-badge circ-badge--hero" aria-hidden="true">
+          <div class="circ-badge__ring">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <path id="hero-circle"
+                  d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"/>
+              </defs>
+              <text font-size="15" font-family="DM Sans, sans-serif"
+                    font-weight="500" letter-spacing="3"
+                    fill="rgba(255,255,255,0.70)">
+                <textPath href="#hero-circle" startOffset="0%">
+                  PRECISION CRAFTSMANSHIP · DREAM BATH · EST. 1999 · EVANSVILLE IN ·
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <img class="circ-badge__logo-img" src="/dream_bath.svg" alt="Dream Bath" />
+        </div>
       </div>
 
       <!-- Scroll hint -->
       <div class="hero__scroll" aria-hidden="true">
-        <div class="hero__scroll-text">Scroll</div>
         <div class="hero__scroll-line"></div>
       </div>
 
@@ -1688,7 +1906,7 @@
 
           <!-- Left: text -->
           <div>
-            <p class="section-label intro__label reveal">Award-Winning Craftsmanship</p>
+            <p class="section-label intro__label reveal">Precision Craftsmanship Since 1999</p>
 
             <h2 class="section-h2 intro__h2 reveal d1">
               Evansville's premier<br>bathroom renovation<br>specialists.
@@ -1716,12 +1934,6 @@
                 <span class="intro__cred-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
                 </span>
-                10-Year Workmanship Warranty
-              </li>
-              <li class="intro__cred">
-                <span class="intro__cred-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-                </span>
                 Transparent, Fixed-Price Quotes
               </li>
               <li class="intro__cred">
@@ -1743,10 +1955,10 @@
 
           <!-- Right: photo -->
           <div class="intro__media reveal d2">
-            <div class="intro__photo" role="img" aria-label="Luxury bathroom renovation by Dream Bath"></div>
-            <div class="intro__badge" aria-label="25 plus years of experience">
-              <div class="intro__badge-num">25+</div>
-              <div class="intro__badge-label">Years of<br>Expertise</div>
+            <div class="intro__photo" role="img" aria-label="Bathroom renovation by Dream Bath"></div>
+            <div class="intro__badge reveal d3">
+              <p class="intro__badge-name">Brent Carter</p>
+              <p class="intro__badge-title">Founder &amp; Owner</p>
             </div>
           </div>
 
@@ -1770,54 +1982,6 @@
 
         <div class="services__grid" id="services-grid">
           <!-- populated by dynamic loader -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════
-         §5 — OUR DIFFERENCE
-         Left: 2 stacked photos | Right: 3 feature blocks
-    ══════════════════════════════════════════════ -->
-    <section class="difference" id="why" aria-label="Why choose Dream Bath">
-      <div class="wrap">
-        <div class="difference__grid">
-
-          <!-- Left: stacked photos -->
-          <div class="difference__photos reveal">
-            <div class="difference__photo difference__photo--1" role="img" aria-label="Finished bathroom renovation project"></div>
-            <div class="difference__photo difference__photo--2" role="img" aria-label="Precision tile installation detail"></div>
-          </div>
-
-          <!-- Right: features -->
-          <div>
-            <div class="difference__header">
-              <p class="section-label reveal" style="margin-bottom:16px;">Our Difference</p>
-              <h2 class="section-h2 reveal d1">Why Evansville homeowners choose us — and refer us.</h2>
-            </div>
-
-            <div class="difference__features">
-
-              <div class="reveal d2">
-                <p class="diff-feature__num">01 — Unmatched Expertise</p>
-                <h3 class="diff-feature__title">25 years. 500+ bathrooms.<br>Zero missed deadlines.</h3>
-                <p class="diff-feature__body">Our team brings deep, in-house expertise across every phase of a renovation — from structural assessment to decorative finishing. No relying on subcontractors. One accountable team from day one to the final reveal.</p>
-              </div>
-
-              <div class="reveal d3">
-                <p class="diff-feature__num">02 — Tailored Solutions</p>
-                <h3 class="diff-feature__title">Your vision, executed precisely<br>to your specification.</h3>
-                <p class="diff-feature__body">We don't offer packages or pre-configured layouts. Every Dream Bath renovation is designed around the specific dimensions, style preferences, and lifestyle needs of the homeowner — then priced transparently before a single wall is touched.</p>
-              </div>
-
-              <div class="reveal d4">
-                <p class="diff-feature__num">03 — Quality Materials</p>
-                <h3 class="diff-feature__title">Trade access to premium<br>tile, stone &amp; fixtures.</h3>
-                <p class="diff-feature__body">Through our longstanding supplier relationships, we offer clients access to wholesale-priced premium tile, natural stone, and fixtures from the industry's top brands — at margins showrooms can't match.</p>
-              </div>
-
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1887,7 +2051,7 @@
             <p class="section-label reveal">Our Portfolio</p>
             <h2 class="section-h2 reveal d1">Featured projects.</h2>
           </div>
-          <a href="#contact" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;">View All Projects</a>
+          <a href="#contact" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;">Contact Us Today</a>
         </div>
 
         <div class="projects__grid" id="portfolio-grid">
@@ -1922,26 +2086,6 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         §9 — OUR PARTNERS
-         Horizontal logo row — material suppliers
-    ══════════════════════════════════════════════ -->
-    <section class="partners" aria-label="Our material partners">
-      <div class="wrap">
-        <header class="partners__header">
-          <p class="partners__label reveal">Our Preferred Suppliers</p>
-        </header>
-        <div class="partners__logos reveal d1" role="list">
-          <div class="partner-logo" role="listitem"><span>Kohler</span></div>
-          <div class="partner-logo" role="listitem"><span>Moen</span></div>
-          <div class="partner-logo" role="listitem"><span>Porcelanosa</span></div>
-          <div class="partner-logo" role="listitem"><span>Delta</span></div>
-          <div class="partner-logo" role="listitem"><span>American Standard</span></div>
-          <div class="partner-logo" role="listitem"><span>Hansgrohe</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════
          §10 — CTA BAND
     ══════════════════════════════════════════════ -->
     <section class="cta-band" id="contact" aria-label="Contact Dream Bath">
@@ -1971,9 +2115,101 @@
               Thanks! We'll be in touch within one business day.
             </p>
           </form>
-          <div class="cta-band__actions reveal d3" style="margin-top:16px">
-            <a href="tel:+18125550182" id="cta-phone-link" class="btn btn-outline-white">Call (812) 555-0182</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════════ -->
+    <section class="faq" aria-label="Frequently asked questions">
+      <div class="wrap">
+        <header class="faq__header">
+          <p class="section-label reveal">Common Questions</p>
+          <h2 class="section-h2 reveal d1">Everything you need<br>to know before you start.</h2>
+        </header>
+        <div class="faq__list">
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What types of bathroom remodeling services do you offer in Evansville?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">We specialize exclusively in residential bathroom transformations, ranging from minor updates with high-end finishes to full luxury remodels. Our expertise includes high-end tile showers, custom rain heads, and specialized layouts tailored to your home.</p>
+            </div>
           </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              How much does a typical bathroom remodel cost?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">Bathroom remodeling projects typically range from $9,000 to $12,000+. A basic remodel with standard materials often starts around $9,000, while projects featuring higher-end finishes and custom designs generally begin at $12,000. Final pricing depends on your specific material choices and the level of customization required.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              How long will it take to complete my bathroom project?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">We strive to set clear expectations for every project timeline. Basic Remodels: approximately 2 weeks. Custom &amp; Tile Showers: approximately 2.5 to 3 weeks.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What areas do you serve near Evansville?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">We are a service-area business providing professional remodeling throughout Evansville, IN and Newburgh, IN. Please note that we do not currently offer services in Henderson due to specific licensing requirements.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              How do I get an estimate for my project?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">We offer a fast, no-hassle estimate process. Reach Out — contact us via our website or phone. Send Photos — provide photos of your current space (no initial home visit needed for simple jobs). Receive Estimate — you'll receive a quick text estimate within approximately 2 days.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              Why should I choose Dream Bath over a general contractor?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">While our owner, Brent Carter, has over 25 years of construction experience and 15 years as a licensed general contractor, Dream Bath focuses specifically on the bathroom niche. We bring a creative edge to every project, utilizing laser-level precision and an artist's eye for layout and color to ensure a premium, detailed finish.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              How far in advance should I start planning my remodel?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">Our commitment to precision and premium craftsmanship means we dedicate the necessary time to every project to ensure perfection. Because our services are in high demand and we maintain a consistently full schedule, we recommend reaching out as early as possible to begin our estimate process and secure your preferred timing on our calendar.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">
+              What is your "Precision &amp; Quality" guarantee?
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__a" role="region">
+              <p class="faq__a-inner">We are extremely detail-oriented and committed to perfection. Our philosophy is that we will take longer on a project if it is necessary to ensure every tile and fixture meets our high standards. As we like to say, "There isn't anything we can't do in a bathroom."</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1993,15 +2229,26 @@
         <!-- Brand + contact -->
         <div>
           <div class="footer__logo">
-            <img src="./dream_bath.svg" alt="Dream Bath" />
+            <img src="/dream_bath.svg" alt="Dream Bath" />
           </div>
           <address class="footer__brand-addr" style="font-style:normal;">
             Licensed General Contractor · <span id="footer-state">Indiana</span><br>
             <span id="footer-city">Evansville, IN</span><br>
-            <a href="tel:+18125550182" id="footer-phone">(812) 555-0182</a><br>
+            <a href="tel:+18124557384" id="footer-phone">(812) 455-7384</a><br>
             <a href="mailto:hello@dreambath.com" id="footer-email">hello@dreambath.com</a><br>
-            <span id="footer-hours">Mon–Fri 8am–6pm</span>
+            <span id="footer-hours">Mon–Fri 8–4</span>
           </address>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://share.google/sELNYNkTiFrBOESdh" target="_blank" rel="noopener noreferrer" class="footer__social-link footer__social-link--google" aria-label="Google Reviews">
+              <svg viewBox="0 0 24 24" fill="none" stroke="none"><path d="M21.8 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.5h3.3c1.9-1.8 3-4.4 3-7.4z" fill="rgba(255,255,255,.8)"/><path d="M12 22c2.7 0 5-0.9 6.7-2.4l-3.3-2.5c-.9.6-2.1 1-3.4 1-2.6 0-4.9-1.8-5.7-4.2H1v2.6C2.7 19.8 7 22 12 22z" fill="rgba(255,255,255,.8)"/><path d="M6.3 13.9A5.9 5.9 0 0 1 6 12c0-.7.1-1.3.3-1.9V7.5H3A10 10 0 0 0 2 12c0 1.6.4 3.2 1 4.5l3.3-2.6z" fill="rgba(255,255,255,.8)"/><path d="M12 6.8c1.5 0 2.8.5 3.8 1.5l2.8-2.8A9.9 9.9 0 0 0 12 2C7 2 2.7 4.2 1 7.5l3.3 2.6C5.1 8.6 7.4 6.8 12 6.8z" fill="rgba(255,255,255,.8)"/></svg>
+            </a>
+          </div>
         </div>
 
         <!-- Services links -->
@@ -2028,30 +2275,6 @@
           </ul>
         </div>
 
-        <!-- Accreditations — like Belle's trust column -->
-        <div>
-          <p class="footer__col-title">Accreditations</p>
-          <div class="footer__badges" role="list">
-            <div class="footer__badge" role="listitem">
-              <span class="footer__badge-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              </span>
-              <span class="footer__badge-text">Licensed GC<br>Indiana</span>
-            </div>
-            <div class="footer__badge" role="listitem">
-              <span class="footer__badge-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </span>
-              <span class="footer__badge-text">Bonded &amp;<br>Insured</span>
-            </div>
-            <div class="footer__badge" role="listitem">
-              <span class="footer__badge-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-              </span>
-              <span class="footer__badge-text">10-Year<br>Warranty</span>
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -2111,37 +2334,20 @@
       });
     });
 
-    /* ── HERO SLIDER ───────────────────────────────── */
-    const slides = document.querySelectorAll('.hero__slide');
-    const dots = document.querySelectorAll('.hero__dot');
-    let current = 0;
-    let slideTimer;
-
-    function goToSlide(idx) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = idx;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-
-    function nextSlide() {
-      goToSlide((current + 1) % slides.length);
-    }
-
-    function startSlider() {
-      slideTimer = setInterval(nextSlide, 5000);
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        clearInterval(slideTimer);
-        goToSlide(i);
-        startSlider();
-      });
-    });
-
-    startSlider();
+    /* ── HERO IMAGE ROTATION (bg + arch in sync) ──────────── */
+    (function () {
+      const bgLayers   = Array.from(document.querySelectorAll('.hero__bg'));
+      const archLayers = Array.from(document.querySelectorAll('.hero__arch-img'));
+      if (!bgLayers.length || !archLayers.length) return;
+      let idx = 0;
+      setInterval(function () {
+        bgLayers[idx].classList.remove('active');
+        archLayers[idx].classList.remove('active');
+        idx = (idx + 1) % bgLayers.length;
+        bgLayers[idx].classList.add('active');
+        archLayers[idx].classList.add('active');
+      }, 3000);
+    }());
 
     /* ── DYNAMIC CONTENT LOADER ────────────────────── */
     const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
@@ -2153,12 +2359,11 @@
     (async () => {
       const safe = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-      const [settings, services, portfolio, testimonials] = await Promise.all([
-        fetch('/api/public/settings').then(r => r.json()).catch(() => null),
-        fetch('/api/public/services').then(r => r.json()).catch(() => []),
-        fetch('/api/public/portfolio').then(r => r.json()).catch(() => []),
-        fetch('/api/public/testimonials').then(r => r.json()).catch(() => []),
-      ]);
+
+      const settings = {"id":1,"name":"Dream Bath","phone":"(812) 455-7384","email":"hello@dreambath.com","city":"Evansville, IN","hours":"Mon–Fri 8–4","license_state":"Indiana","tagline":"Your bathroom, reimagined with precision.","subheading":"Dream Bath brings 25 years of craftsmanship to every project.","google_rating":"5.0","review_count":"120+","satisfaction_rate":"100%","referral_rate":"8/10"};
+      const services = [{"id":1,"label":"Complete Renovation","title":"Full Bathroom\nRemodeling","description":"From gutting to finishing — we handle every detail of your full bathroom transformation.","image_url":"/client-assets/2/IMG_1887_1775672482431.jpg"},{"id":2,"label":"Shower & Spa","title":"Shower & Wet Room Design","description":"Custom tile work, frameless glass, steam systems, and spa-grade fixtures.","image_url":"/client-assets/2/IMG_8363_1775672482458.jpg"},{"id":3,"label":"Fixtures & Stone","title":"Tub Replacement & Stonework","description":"Soaking tubs, natural stone surrounds, and premium fixture installations.","image_url":"/client-assets/2/IMG_7836_1775672482453.jpg"}];
+      const portfolio = [{"id":1,"title":"Carrington Master Bath","location":"Ladue, MO","materials":"Carrara Marble · Custom Vanity · Rain Shower","image_url":"/client-assets/2/IMG_8363_1775672482458.jpg"},{"id":2,"title":"Westbrook Ensuite","location":"Kirkwood, MO","materials":"Double Vanity · Heated Floors · Frameless Glass","image_url":"/client-assets/2/IMG_8057_1775672482457.jpg"},{"id":3,"title":"Elmwood Primary Bath","location":"Webster Groves, MO","materials":"Freestanding Tub · Subway Tile · Brushed Gold","image_url":"/client-assets/2/IMG_7836_1775672482453.jpg"},{"id":4,"title":"Pemberton Full Gut","location":"Town & Country, MO","materials":"Complete Remodel · Waterfall Shower · LED Niches","image_url":"/client-assets/2/IMG_6092_1775672482452.jpg"},{"id":5,"title":"Rosemont His & Hers","location":"Creve Coeur, MO","materials":"His & Hers Vanities · Steam Shower · Soaking Tub","image_url":"/client-assets/2/IMG_2564_1775672482444.JPG"},{"id":6,"title":"Ashford Statement Bath","location":"Frontenac, MO","materials":"Terrazzo Floor · Arched Mirror · Chandelier","image_url":"/client-assets/2/IMG_1888_1775672482433.jpg"}];
+      const testimonials = [{"id":7,"quote":"Brent and his team are professional, on time and detail driven. I highly recommend these guys for your next tile project.","stars":5,"client_name":"Rick Schilb","client_location":""},{"id":8,"quote":"Beautiful bathroom remodel. Brent was very detail oriented and was anxious to please. The walkin shower is the best bathing option i have ever had. The rain shower head, personal sprayer, comfortable seating and dimmable lights makes for a pleasurable experience. Thank you Brent!","stars":5,"client_name":"Cathy Carter","client_location":""},{"id":9,"quote":"Such a great family owned business! They did a full bathroom remodel for us and installed a tile shower and tub that looks amazing! Would recommend to anyone wanting to find a trustworthy and reliable contractor.","stars":5,"client_name":"Hope Carrier","client_location":""}];
 
       // ── Company settings → footer + CTA phone
       if (settings) {
@@ -2172,18 +2377,11 @@
         set('footer-email', settings.email || '');
         setAttr('footer-email', 'href', 'mailto:' + (settings.email || ''));
         if (settings.subheading) set('hero-sub', settings.subheading);
-        // CTA call button
-        const ctaPhone = document.getElementById('cta-phone-link');
-        if (ctaPhone && settings.phone) {
-          ctaPhone.textContent = 'Call ' + settings.phone;
-          ctaPhone.href = 'tel:' + settings.phone.replace(/\D/g, '');
-        }
         // Stats bar
         const statsBar = document.getElementById('stats-bar');
         if (statsBar) {
           statsBar.innerHTML = [
             [settings.google_rating, 'Google Rating'],
-            [settings.review_count, 'Verified Reviews'],
             [settings.satisfaction_rate, 'Satisfaction Rate'],
             [settings.referral_rate, 'Clients from Referrals'],
           ].map(([num, label], i) => `
@@ -2206,7 +2404,6 @@
             <div class="svc-card__inner">
               <p class="svc-card__label">${safe(s.label)}</p>
               <h3 class="svc-card__title">${safe(s.title).replace(/\n/g, '<br>')}</h3>
-              <span class="svc-card__link">Explore</span>
             </div>
           </a>`).join('');
         // Populate service select in contact form
@@ -2230,12 +2427,6 @@
             ${p.image_url
               ? `<div class="proj-card__bg" style="background:url('${safe(p.image_url)}') center/cover no-repeat"></div>`
               : `<div class="proj-card__bg proj-card__bg--fallback"></div>`}
-            <div class="proj-card__overlay"></div>
-            <div class="proj-card__info">
-              <p class="proj-card__location">${safe(p.location)}</p>
-              <h3 class="proj-card__name">${safe(p.title)}</h3>
-              <span class="proj-card__tag">${safe(p.materials)}</span>
-            </div>
           </article>`).join('');
         if (window._revealObserver) portfolioGrid.querySelectorAll('.reveal').forEach(el => window._revealObserver.observe(el));
       }
@@ -2269,18 +2460,11 @@
           btn.textContent = 'Sending…';
           try {
             const data = Object.fromEntries(new FormData(form));
-            const r = await fetch('/api/public/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
-            if (r.ok) {
-              form.style.display = 'none';
-              document.getElementById('form-confirm').style.display = 'block';
-            } else {
-              btn.disabled = false;
-              btn.textContent = 'Send Message';
-            }
+            const subject = encodeURIComponent('Dream Bath Inquiry — ' + (data.service || 'General'));
+            const body = encodeURIComponent('Name: ' + (data.name||'') + '\nPhone: ' + (data.phone||'') + '\nEmail: ' + (data.email||'') + '\nService: ' + (data.service||'') + '\nMessage: ' + (data.message||''));
+            window.location.href = 'mailto:hello@dreambath.com?subject=' + subject + '&body=' + body;
+            form.style.display = 'none';
+            document.getElementById('form-confirm').style.display = 'block';
           } catch {
             btn.disabled = false;
             btn.textContent = 'Send Message';
@@ -2308,6 +2492,29 @@
       revealEls.forEach(el => el.classList.add('in'));
     }
 
+    /* ── FAQ ACCORDION ─────────────────────────────── */
+    document.querySelectorAll('.faq__q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq__item');
+        const panel  = item.querySelector('.faq__a');
+        const isOpen = item.classList.contains('open');
+
+        // Close all open items
+        document.querySelectorAll('.faq__item.open').forEach(open => {
+          open.classList.remove('open');
+          open.querySelector('.faq__a').style.maxHeight = '0';
+          open.querySelector('.faq__q').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked item if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
     /* ── SMOOTH SCROLL ─────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
@@ -2318,6 +2525,224 @@
         }
       });
     });
+  </script>
+
+  <!-- GSAP circular scroll animations -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── inject CSS: suppress transitions on GSAP-owned elements ── */
+    const gStyle = document.createElement('style');
+    gStyle.textContent =
+      '.gsap-arc{transition:none!important;will-change:transform,opacity;}';
+    document.head.appendChild(gStyle);
+
+    /* ── sequential script loader ── */
+    function loadScript(src, cb) {
+      const s = document.createElement('script');
+      s.src = src; s.async = true; s.onload = cb;
+      document.head.appendChild(s);
+    }
+
+    loadScript(
+      'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js',
+      function () {
+        loadScript(
+          'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js',
+          boot
+        );
+      }
+    );
+
+    function boot() {
+      gsap.registerPlugin(ScrollTrigger);
+      const mobile = window.matchMedia('(max-width: 768px)').matches;
+
+      /* ─────────────────────────────────────────────────────────
+         takeOver(els)
+         Marks elements as GSAP-owned: suppresses the CSS reveal
+         transition and pre-hides them so GSAP controls the reveal.
+      ───────────────────────────────────────────────────────── */
+      function takeOver(els) {
+        els.forEach(el => {
+          el.classList.add('in', 'gsap-arc'); // 'in' stops IntersectionObserver re-firing
+        });
+        gsap.set(els, { opacity: 0, x: 0, y: 0, rotation: 0, scale: 1 });
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         arcReveal(els, trigger, opts)
+         Core animation: each element starts at a position on an
+         imaginary arc and smoothly moves to its natural position.
+
+         Arc geometry (desktop):
+           angle  = (i − mid) / (n−1) × π × spread
+           startX = sin(angle) × radius          ← horizontal arc
+           startY = (1 − cos(angle)) × radius×h + yBase  ← curve depth
+           startR = (i − mid) × rotateDeg        ← gentle tilt
+      ───────────────────────────────────────────────────────── */
+      function arcReveal(els, trigger, o) {
+        o = o || {};
+        const n       = els.length;
+        const radius  = mobile ? (o.radiusMob  || 70)  : (o.radius  || 260);
+        const hFactor = mobile ? 0                     : (o.hFactor || 0.28);
+        const yBase   = mobile ? (o.yBaseMob   || 24)  : (o.yBase   || 48);
+        const spread  = o.spread  || 0.7;
+        const rotDeg  = mobile ? 0 : (o.rotateDeg || 4);
+        const stagger = o.stagger || 0.08;
+        const dur     = o.duration || 1.1;
+        const ease    = o.ease || 'expo.out';
+        const scaleFrom = mobile ? 0.97 : (o.scaleFrom || 0.90);
+
+        takeOver(Array.from(els));
+
+        els.forEach((el, i) => {
+          const mid   = (n - 1) / 2;
+          const t     = n > 1 ? (i - mid) / (n - 1) : 0;
+          const angle = t * Math.PI * spread;
+          const startX = Math.sin(angle) * radius;
+          const startY = yBase + (1 - Math.cos(angle)) * radius * hFactor;
+          const startR = t * (n - 1) * rotDeg;
+
+          gsap.fromTo(el,
+            { x: startX, y: startY, rotation: startR, opacity: 0, scale: scaleFrom },
+            {
+              x: 0, y: 0, rotation: 0, opacity: 1, scale: 1,
+              ease, duration: dur,
+              delay: i * stagger,
+              scrollTrigger: {
+                trigger,
+                start: o.start || 'top 78%',
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        });
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         watchGrid(id, selector, opts)
+         Fires arcReveal once the dynamic grid is populated
+         (data arrives via fetch after page load).
+      ───────────────────────────────────────────────────────── */
+      function watchGrid(id, selector, opts) {
+        const grid = document.getElementById(id);
+        if (!grid) return;
+        let done = false;
+
+        function tryAnimate() {
+          if (done) return;
+          const els = grid.querySelectorAll(selector);
+          if (!els.length) return;
+          done = true;
+          mo.disconnect();
+          arcReveal(els, grid, opts);
+          ScrollTrigger.refresh();
+        }
+
+        const mo = new MutationObserver(tryAnimate);
+        mo.observe(grid, { childList: true });
+        tryAnimate(); // in case already populated
+      }
+
+      /* ── Portfolio — wide circular spread ─────────── */
+      watchGrid('portfolio-grid', '.proj-card', {
+        radius: 360, radiusMob: 60,
+        hFactor: 0.30, spread: 0.80,
+        yBase: 60, yBaseMob: 20,
+        rotateDeg: 5, scaleFrom: 0.88,
+        stagger: 0.07, duration: 1.15,
+        start: 'top 80%'
+      });
+
+      /* ── Services — gentle upward arc ─────────────── */
+      watchGrid('services-grid', '.svc-card', {
+        radius: 200, radiusMob: 50,
+        hFactor: 0.20, spread: 0.55,
+        yBase: 50, yBaseMob: 20,
+        rotateDeg: 3, scaleFrom: 0.92,
+        stagger: 0.10, duration: 1.05,
+        start: 'top 80%'
+      });
+
+      /* ── Process steps — horizontal wave ──────────── */
+      const steps = document.querySelectorAll('.proc-step');
+      if (steps.length) {
+        arcReveal(steps, '.process__steps', {
+          radius: 160, radiusMob: 0,
+          hFactor: 0.10, spread: 0.45,
+          yBase: 40, yBaseMob: 20,
+          rotateDeg: 0, scaleFrom: 0.94,
+          stagger: 0.09, duration: 0.95,
+          ease: 'back.out(1.3)',
+          start: 'top 76%'
+        });
+      }
+
+      /* ── Testimonials — arc from below ────────────── */
+      const testiGrid = document.querySelector('.testimonials__grid');
+      if (testiGrid) {
+        let done2 = false;
+        const mo2 = new MutationObserver(() => {
+          if (done2) return;
+          const cards = testiGrid.querySelectorAll('.testi-card');
+          if (!cards.length) return;
+          done2 = true;
+          mo2.disconnect();
+          arcReveal(cards, testiGrid, {
+            radius: 180, radiusMob: 40,
+            hFactor: 0.18, spread: 0.50,
+            yBase: 44, yBaseMob: 16,
+            rotateDeg: 3, scaleFrom: 0.92,
+            stagger: 0.09, duration: 1.0,
+            start: 'top 78%'
+          });
+          ScrollTrigger.refresh();
+        });
+        mo2.observe(testiGrid, { childList: true });
+      }
+
+      /* ── Section headings — subtle perspective tilt ─ */
+      document.querySelectorAll('.section-h2').forEach(h => {
+        if (h.closest('.hero')) return;
+        h.classList.add('in', 'gsap-arc');
+        gsap.set(h, { opacity: 0 });
+        gsap.fromTo(h,
+          { y: 22, opacity: 0, rotationX: 7, transformPerspective: 900,
+            transformOrigin: '50% 100%' },
+          {
+            y: 0, opacity: 1, rotationX: 0,
+            ease: 'expo.out', duration: 1.05,
+            scrollTrigger: {
+              trigger: h, start: 'top 88%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      });
+
+      /* ── Section labels (small uppercase) ─────────── */
+      document.querySelectorAll('.section-label').forEach(el => {
+        if (el.closest('.hero, .nav')) return;
+        el.classList.add('in', 'gsap-arc');
+        gsap.set(el, { opacity: 0 });
+        gsap.fromTo(el,
+          { y: 14, opacity: 0, letterSpacing: '0.25em' },
+          {
+            y: 0, opacity: 1, letterSpacing: '',
+            ease: 'expo.out', duration: 0.9,
+            scrollTrigger: {
+              trigger: el, start: 'top 90%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
+    }
+  }());
   </script>
 
 </body>
