@@ -394,7 +394,6 @@
     .hero__arch {
       position: relative;
       width: 100%;
-      max-width: 460px;
       aspect-ratio: 3/4.4;
       border-radius: 1000px 1000px 0 0;
       overflow: hidden;
@@ -1563,10 +1562,15 @@
       user-select: none;
       z-index: 3;
     }
-    /* Hero placement — bottom-right of arch-wrap */
+    /* Hero placement — bottom-left corner of arch */
+    .hero__arch-container {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
     .circ-badge--hero {
-      bottom: 40px;
-      right: 40px;
+      bottom: -80px;
+      left: -80px;
       width: 200px;
       height: 200px;
     }
@@ -1611,14 +1615,14 @@
       to { transform: rotate(360deg); }
     }
     @media (max-width: 900px) {
-      .circ-badge--hero { bottom: 24px; right: 24px; }
+      .circ-badge--hero { bottom: -70px; left: -70px; }
     }
     @media (max-width: 768px) {
       .circ-badge--hero {
         width: 185px;
         height: 185px;
-        bottom: 20px;
-        right: 20px;
+        bottom: -60px;
+        left: -60px;
       }
       .circ-badge--hero .circ-badge__logo-img { width: 98px; }
     }
@@ -1626,8 +1630,8 @@
       .circ-badge--hero {
         width: 170px;
         height: 170px;
-        bottom: 16px;
-        right: 16px;
+        bottom: -55px;
+        left: -55px;
       }
       .circ-badge--hero .circ-badge__logo-img { width: 88px; }
     }
@@ -1864,6 +1868,7 @@
 
       <!-- RIGHT: arch image + circular badge -->
       <div class="hero__arch-wrap">
+        <div class="hero__arch-container">
         <div class="hero__arch" aria-hidden="true">
           <div class="hero__arch-img hero__arch-img--1 active"></div>
           <div class="hero__arch-img hero__arch-img--2"></div>
@@ -1887,6 +1892,7 @@
             </svg>
           </div>
           <img class="circ-badge__logo-img" src="/sites/dream-bath/dream_bath.svg" alt="Dream Bath" />
+        </div>
         </div>
       </div>
 
@@ -2360,11 +2366,12 @@
     (async () => {
       const safe = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-
-      const settings = {"id":1,"name":"Dream Bath","phone":"(812) 455-7384","email":"hello@dreambath.com","city":"Evansville, IN","hours":"Mon–Fri 8–4","license_state":"Indiana","tagline":"Your bathroom, reimagined with precision.","subheading":"Dream Bath brings 25 years of craftsmanship to every project.","google_rating":"5.0","review_count":"120+","satisfaction_rate":"100%","referral_rate":"8/10"};
-      const services = [{"id":1,"label":"Complete Renovation","title":"Full Bathroom\nRemodeling","description":"From gutting to finishing — we handle every detail of your full bathroom transformation.","image_url":"/client-assets/2/IMG_1887_1775672482431.jpg"},{"id":2,"label":"Shower & Spa","title":"Shower & Wet Room Design","description":"Custom tile work, frameless glass, steam systems, and spa-grade fixtures.","image_url":"/client-assets/2/IMG_8363_1775672482458.jpg"},{"id":3,"label":"Fixtures & Stone","title":"Tub Replacement & Stonework","description":"Soaking tubs, natural stone surrounds, and premium fixture installations.","image_url":"/client-assets/2/IMG_7836_1775672482453.jpg"}];
-      const portfolio = [{"id":1,"title":"Carrington Master Bath","location":"Ladue, MO","materials":"Carrara Marble · Custom Vanity · Rain Shower","image_url":"/client-assets/2/IMG_8363_1775672482458.jpg"},{"id":2,"title":"Westbrook Ensuite","location":"Kirkwood, MO","materials":"Double Vanity · Heated Floors · Frameless Glass","image_url":"/client-assets/2/IMG_8057_1775672482457.jpg"},{"id":3,"title":"Elmwood Primary Bath","location":"Webster Groves, MO","materials":"Freestanding Tub · Subway Tile · Brushed Gold","image_url":"/client-assets/2/IMG_7836_1775672482453.jpg"},{"id":4,"title":"Pemberton Full Gut","location":"Town & Country, MO","materials":"Complete Remodel · Waterfall Shower · LED Niches","image_url":"/client-assets/2/IMG_6092_1775672482452.jpg"},{"id":5,"title":"Rosemont His & Hers","location":"Creve Coeur, MO","materials":"His & Hers Vanities · Steam Shower · Soaking Tub","image_url":"/client-assets/2/IMG_2564_1775672482444.JPG"},{"id":6,"title":"Ashford Statement Bath","location":"Frontenac, MO","materials":"Terrazzo Floor · Arched Mirror · Chandelier","image_url":"/client-assets/2/IMG_1888_1775672482433.jpg"}];
-      const testimonials = [{"id":7,"quote":"Brent and his team are professional, on time and detail driven. I highly recommend these guys for your next tile project.","stars":5,"client_name":"Rick Schilb","client_location":""},{"id":8,"quote":"Beautiful bathroom remodel. Brent was very detail oriented and was anxious to please. The walkin shower is the best bathing option i have ever had. The rain shower head, personal sprayer, comfortable seating and dimmable lights makes for a pleasurable experience. Thank you Brent!","stars":5,"client_name":"Cathy Carter","client_location":""},{"id":9,"quote":"Such a great family owned business! They did a full bathroom remodel for us and installed a tile shower and tub that looks amazing! Would recommend to anyone wanting to find a trustworthy and reliable contractor.","stars":5,"client_name":"Hope Carrier","client_location":""}];
+      const [settings, services, portfolio, testimonials] = await Promise.all([
+        fetch('/api/public/settings').then(r => r.json()).catch(() => null),
+        fetch('/api/public/services').then(r => r.json()).catch(() => []),
+        fetch('/api/public/portfolio').then(r => r.json()).catch(() => []),
+        fetch('/api/public/testimonials').then(r => r.json()).catch(() => []),
+      ]);
 
       // ── Company settings → footer + CTA phone
       if (settings) {
@@ -2461,11 +2468,18 @@
           btn.textContent = 'Sending…';
           try {
             const data = Object.fromEntries(new FormData(form));
-            const subject = encodeURIComponent('Dream Bath Inquiry — ' + (data.service || 'General'));
-            const body = encodeURIComponent('Name: ' + (data.name||'') + '\nPhone: ' + (data.phone||'') + '\nEmail: ' + (data.email||'') + '\nService: ' + (data.service||'') + '\nMessage: ' + (data.message||''));
-            window.location.href = 'mailto:hello@dreambath.com?subject=' + subject + '&body=' + body;
-            form.style.display = 'none';
-            document.getElementById('form-confirm').style.display = 'block';
+            const r = await fetch('/api/public/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            if (r.ok) {
+              form.style.display = 'none';
+              document.getElementById('form-confirm').style.display = 'block';
+            } else {
+              btn.disabled = false;
+              btn.textContent = 'Send Message';
+            }
           } catch {
             btn.disabled = false;
             btn.textContent = 'Send Message';

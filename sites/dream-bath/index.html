@@ -394,7 +394,6 @@
     .hero__arch {
       position: relative;
       width: 100%;
-      max-width: 460px;
       aspect-ratio: 3/4.4;
       border-radius: 1000px 1000px 0 0;
       overflow: hidden;
@@ -1563,10 +1562,15 @@
       user-select: none;
       z-index: 3;
     }
-    /* Hero placement — bottom-right of arch-wrap */
+    /* Hero placement — bottom-left corner of arch */
+    .hero__arch-container {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
     .circ-badge--hero {
-      bottom: 40px;
-      right: 40px;
+      bottom: -80px;
+      left: -80px;
       width: 200px;
       height: 200px;
     }
@@ -1611,14 +1615,14 @@
       to { transform: rotate(360deg); }
     }
     @media (max-width: 900px) {
-      .circ-badge--hero { bottom: 24px; right: 24px; }
+      .circ-badge--hero { bottom: -70px; left: -70px; }
     }
     @media (max-width: 768px) {
       .circ-badge--hero {
         width: 185px;
         height: 185px;
-        bottom: 20px;
-        right: 20px;
+        bottom: -60px;
+        left: -60px;
       }
       .circ-badge--hero .circ-badge__logo-img { width: 98px; }
     }
@@ -1626,8 +1630,8 @@
       .circ-badge--hero {
         width: 170px;
         height: 170px;
-        bottom: 16px;
-        right: 16px;
+        bottom: -55px;
+        left: -55px;
       }
       .circ-badge--hero .circ-badge__logo-img { width: 88px; }
     }
@@ -1864,6 +1868,7 @@
 
       <!-- RIGHT: arch image + circular badge -->
       <div class="hero__arch-wrap">
+        <div class="hero__arch-container">
         <div class="hero__arch" aria-hidden="true">
           <div class="hero__arch-img hero__arch-img--1 active"></div>
           <div class="hero__arch-img hero__arch-img--2"></div>
@@ -1887,6 +1892,7 @@
             </svg>
           </div>
           <img class="circ-badge__logo-img" src="/sites/dream-bath/dream_bath.svg" alt="Dream Bath" />
+        </div>
         </div>
       </div>
 
