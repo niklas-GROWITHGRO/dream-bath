@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-04-15T13:51:10.089Z",
+  "client": {
+    "name": "Dream Bath",
+    "website_url": "http://localhost:3000/dream-bath.html",
+    "dev_url": "http://localhost:3000/dream-bath.html",
+    "contact_name": "Brent Carter",
+    "contact_email": "",
+    "phone": ""
+  },
+  "brand": {
+    "primary_color": "#869BAF",
+    "secondary_color": "#F5F1EB",
+    "accent_color": "#2C2825",
+    "color_4": "",
+    "headline_font": "Joly Headline",
+    "body_font": "Inter",
+    "accent_font": ""
+  },
+  "assets": [
+    {
+      "url": "/uploads/60014056480__7661E3AA-BA70-4436-A116-BD3AB1D70589_1775672482394.jpeg",
+      "original_name": "60014056480__7661E3AA-BA70-4436-A116-BD3AB1D70589.jpeg",
+      "placement": "",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/62931606721__B28F4B27-2556-48B0-9152-EC7440E0ED2F_1775672482411.HEIC",
+      "original_name": "62931606721__B28F4B27-2556-48B0-9152-EC7440E0ED2F.HEIC",
+      "placement": "",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/IMG_0343_1775672482418.heic",
+      "original_name": "IMG_0343.heic",
+      "placement": "",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/IMG_1887_1775672482431.heic",
+      "original_name": "IMG_1887.heic",
+      "placement": "",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/IMG_1888_1775672482433.heic",
+      "original_name": "IMG_1888.heic",
+      "placement": "",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/dream_bath_1775840249727.svg",
+      "original_name": "dream_bath.svg",
+      "placement": "use for logo\n",
+      "type": "image"
+    },
+    {
+      "url": "/uploads/brent-carter_1776112078758.avif",
+      "original_name": "brent-carter.jpg",
+      "placement": "",
+      "type": "image"
+    }
+  ],
+  "social": [
+    {
+      "platform": "Facebook",
+      "url": "https://www.facebook.com/people/Dream-Bath-LLC/61579276388734/#"
+    }
+  ]
+}
