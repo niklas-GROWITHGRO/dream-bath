@@ -7,7 +7,7 @@
       "id": 45,
       "placement": "",
       "category": "staff",
-      "url": "http://localhost:3000/client-assets/2/brent-carter_1776112078758.avif",
+      "url": "http://localhost:3000/client-assets/dream-bath/brent-carter_1776112078758.avif",
       "original_name": "brent-carter.jpg",
       "mimetype": "image/avif",
       "type": "image"
@@ -16,7 +16,7 @@
       "id": 41,
       "placement": "use for logo\n",
       "category": "logo",
-      "url": "http://localhost:3000/client-assets/2/dream_bath_1775840249727.svg",
+      "url": "http://localhost:3000/client-assets/dream-bath/dream_bath_1775840249727.svg",
       "original_name": "dream_bath.svg",
       "mimetype": "image/svg+xml",
       "type": "image"

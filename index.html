@@ -214,7 +214,7 @@
       align-items: center;
     }
     .nav__logo img {
-      height: 72px;
+      height: 96px;
       width: auto;
       transition: filter .3s;
     }
@@ -360,12 +360,32 @@
       height: 130%;
       z-index: 0;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+      transition: opacity 1.4s ease-in-out;
       background-size: cover;
       background-position: center;
       will-change: transform;
+      transform-origin: center center;
     }
     .hero__bg.active { opacity: 1; }
+    /* Faded logo watermark */
+    /* Faded logo watermark — sits above dark overlay, below text */
+    .hero__logo-wm {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero__logo-wm img {
+      width: clamp(520px, 72vw, 960px);
+      height: auto;
+      opacity: 0.07;
+      filter: brightness(0) invert(1);
+      user-select: none;
+    }
     .hero__bg--1 { background-image: url('./hero-slide-1.avif'); }
     .hero__bg--2 { background-image: url('./hero-slide-2.avif'); }
     .hero__bg--3 { background-image: url('./hero-slide-3.avif'); }
@@ -421,7 +441,6 @@
       background-position: center;
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
-      animation: hero-zoom 24s ease-in-out infinite alternate;
       transform-origin: center;
       will-change: transform;
     }
@@ -684,11 +703,11 @@
       justify-content: center;
       margin-bottom: 16px;
     }
-    .services__header .section-label::before { display: none; }
+    .services__header .section-label::before { background: rgba(255,255,255,0.4); }
     .services__header .section-label::after {
       content: '';
       width: 32px; height: 1px;
-      background: var(--gold);
+      background: rgba(255,255,255,0.4);
       flex-shrink: 0;
     }
     .services__intro {
@@ -725,7 +744,9 @@
       aspect-ratio: 2/3;     /* Portrait — like Belle's service card */
       position: relative;
       overflow: hidden;
+      transition: transform .65s var(--ease);
     }
+    .svc-card:hover .svc-card__image { transform: scale(1.07); }
     .svc-card__image::after {
       content: '';
       position: absolute;
@@ -1192,37 +1213,43 @@
     .gallery-dot.active { background: var(--charcoal); transform: scale(1.3); }
 
     /* ── Contact form additions ── */
-    .contact-form .file-upload-label {
-      display: block;
-      font-family: var(--sans);
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .contact-form input[type="file"] {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--stone);
-      border-radius: var(--r-sm);
-      font-family: var(--sans);
-      font-size: 14px;
-      color: var(--text);
-      background: var(--white);
-      cursor: pointer;
-    }
-    .cta-phone-inline {
+    .file-upload-trigger {
       display: flex;
       align-items: center;
       gap: 10px;
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--stone);
+      border-radius: var(--r-sm);
+      background: var(--white);
       font-family: var(--sans);
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--gold);
-      margin-bottom: 24px;
-      text-decoration: none;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      box-sizing: border-box;
+      margin-bottom: 16px;
     }
-    .cta-phone-inline:hover { color: var(--gold-dark); }
-    .cta-phone-inline svg { flex-shrink: 0; }
+    .file-upload-trigger:hover { border-color: var(--gold); color: var(--text); }
+    .file-upload-trigger svg { flex-shrink: 0; opacity: .55; }
+    .cta-phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--gold);
+      color: var(--white);
+      border: 1.5px solid var(--gold);
+      border-radius: var(--r-sm);
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: background .25s, border-color .25s;
+    }
+    .cta-phone-btn:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+    .cta-phone-btn svg { flex-shrink: 0; }
     .btn-call-outline {
       display: inline-flex;
       align-items: center;
@@ -1260,7 +1287,7 @@
       margin-bottom: 16px;
       color: #869BAF;
     }
-    .testimonials__header .section-label::before { display: none; }
+    .testimonials__header .section-label::before { background: var(--gold); }
     .testimonials__header .section-label::after {
       content: '';
       width: 32px; height: 1px;
@@ -1524,7 +1551,7 @@
       margin-bottom: 24px;
     }
     .footer__brand-addr {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
       color: #ffffff;
       line-height: 1.9;
@@ -1565,7 +1592,7 @@
     }
 
     .footer__col-title {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: .16em;
       text-transform: uppercase;
@@ -1578,7 +1605,7 @@
       gap: 14px;
     }
     .footer__links a {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
       color: #ffffff;
       line-height: 1.5;
@@ -1615,7 +1642,7 @@
       stroke-linejoin: round;
     }
     .footer__badge-text {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 400;
       color: rgba(255,255,255,.45);
       line-height: 1.3;
@@ -1630,30 +1657,19 @@
       flex-wrap: wrap;
     }
     .footer__copy {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 300;
       color: #ffffff;
       letter-spacing: .02em;
     }
-    .footer__legal {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+    .footer__powered img {
+      height: 28px;
+      width: auto;
+      opacity: .7;
+      transition: opacity .2s;
+      display: block;
     }
-    .footer__legal a {
-      font-size: 12px;
-      font-weight: 300;
-      color: #ffffff;
-      transition: color .2s;
-    }
-    .footer__legal a:hover { color: var(--gold-light); }
-    .footer__powered {
-      font-size: 12px;
-      font-weight: 300;
-      color: rgba(255,255,255,.45);
-      transition: color .2s;
-    }
-    .footer__powered:hover { color: var(--gold); }
+    .footer__powered:hover img { opacity: 1; }
 
     @media (max-width: 960px) {
       .footer__top { grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -1687,7 +1703,7 @@
       max-width: 460px;
     }
     .circ-badge--hero {
-      bottom: -80px;
+      bottom: -40px;
       left: -80px;
       width: 200px;
       height: 200px;
@@ -1724,7 +1740,7 @@
     .circ-badge__logo-img {
       position: relative;
       z-index: 1;
-      width: 135px;
+      width: 155px;
       height: auto;
       filter: brightness(0) invert(1);
       opacity: 0.95;
@@ -1772,7 +1788,7 @@
       justify-content: center;
       margin-bottom: 16px;
     }
-    .faq__header .section-label::before { display: none; }
+    .faq__header .section-label::before { background: var(--gold); opacity: .5; }
     .faq__header .section-label::after {
       content: ''; width: 32px; height: 1px;
       background: var(--gold); opacity: .5;
@@ -1905,6 +1921,37 @@
     @media (max-width: 600px) {
       .contact-form__row { grid-template-columns: 1fr; }
     }
+
+    /* ── Lightbox ─────────────────────────────────────── */
+    .lb-overlay { display:none; position:fixed; inset:0; z-index:9000; background:rgba(0,0,0,.92); align-items:center; justify-content:center; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; }
+    .lb-close { position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:36px; line-height:1; cursor:pointer; opacity:.7; }
+    .lb-close:hover { opacity:1; }
+    .lb-prev, .lb-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); border:none; color:#fff; font-size:32px; padding:10px 16px; cursor:pointer; border-radius:4px; transition:background .2s; user-select:none; }
+    .lb-prev { left:16px; }
+    .lb-next { right:16px; }
+    .lb-prev:hover, .lb-next:hover { background:rgba(255,255,255,.28); }
+    .proj-card { cursor:pointer; }
+
+    /* ── Mobile gallery — horizontal swipe ───────────── */
+    @media (max-width: 768px) {
+      .gallery-slider__grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 8px;
+      }
+      .gallery-slider__grid .proj-card {
+        flex: 0 0 82vw;
+        scroll-snap-align: start;
+        height: 240px;
+      }
+      .gallery-slider__controls { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1965,6 +2012,9 @@
       <div class="hero__bg hero__bg--1 active" aria-hidden="true"></div>
       <div class="hero__bg hero__bg--2" aria-hidden="true"></div>
       <div class="hero__bg hero__bg--3" aria-hidden="true"></div>
+      <div class="hero__logo-wm" aria-hidden="true">
+        <img src="./dream_bath.svg" alt="">
+      </div>
       <div class="hero__overlay" aria-hidden="true"></div>
 
       <!-- Constrained inner grid -->
@@ -2006,11 +2056,12 @@
                 <path id="hero-circle"
                   d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"/>
               </defs>
-              <text font-size="15" font-family="DM Sans, sans-serif"
-                    font-weight="500" letter-spacing="3"
-                    fill="rgba(255,255,255,0.70)">
-                <textPath href="#hero-circle" startOffset="0%">
-                  25 YEARS OF CONSTRUCTION · CRAFTSMANSHIP · PRECISION · DREAM BATH ·
+              <text font-size="14" font-family="DM Sans, sans-serif"
+                    font-weight="500"
+                    fill="rgba(255,255,255,0.75)">
+                <textPath href="#hero-circle" startOffset="0%"
+                          textLength="510" lengthAdjust="spacing">
+                  25 YEARS · CRAFTSMANSHIP · DREAM BATH · EVANSVILLE IN ·
                 </textPath>
               </text>
             </svg>
@@ -2083,7 +2134,7 @@
               </li>
             </ul>
 
-            <a href="#contact" class="btn btn-solid reveal d4">Enquire Today</a>
+            <a href="tel:+18124557384" class="btn btn-solid reveal d4"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Us Today</a>
           </div>
 
           <!-- Right: photo -->
@@ -2204,7 +2255,7 @@
             <p class="section-label reveal">Our Portfolio</p>
             <h2 class="section-h2 reveal d1">Featured projects.</h2>
           </div>
-          <a href="#contact" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;">Contact Us Today</a>
+          <a href="tel:+18124557384" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Us Today</a>
         </div>
 
         <div class="projects__grid" id="portfolio-grid">
@@ -2343,8 +2394,8 @@
           <p class="cta-band__sub reveal d2">
             No pressure. No surprises. Just honest craftsmanship and a space you'll love for decades. We respond within one business day.
           </p>
-          <a href="tel:+18124557384" class="cta-phone-inline reveal d2">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+18124557384" class="btn btn-gold reveal d2" style="margin-bottom:32px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             (812) 455-7384
           </a>
           <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST" enctype="multipart/form-data">
@@ -2362,14 +2413,13 @@
               </select>
             </div>
             <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
-            <label class="file-upload-label">Attach photos or files (optional)</label>
-            <input type="file" name="attachment" accept="image/*,.pdf,.doc,.docx" multiple>
+            <input type="file" id="contact-file-input" name="attachment" accept="image/*,.pdf,.doc,.docx" multiple style="display:none">
+            <label for="contact-file-input" class="file-upload-trigger">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              <span id="file-label-text">Attach photos or files (optional)</span>
+            </label>
             <button type="submit" class="btn btn-gold">Send Message</button>
           </form>
-          <a href="tel:+18124557384" class="btn-call-outline reveal d4">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Prefer to call? (812) 455-7384
-          </a>
         </div>
       </div>
     </section>
@@ -2487,9 +2537,6 @@
             <a href="#" class="footer__social-link" aria-label="Facebook">
               <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="#" class="footer__social-link" aria-label="Instagram">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
             <a href="https://share.google/sELNYNkTiFrBOESdh" target="_blank" rel="noopener noreferrer" class="footer__social-link footer__social-link--google" aria-label="Google Reviews">
               <svg viewBox="0 0 24 24" fill="none" stroke="none"><path d="M21.8 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.5h3.3c1.9-1.8 3-4.4 3-7.4z" fill="rgba(255,255,255,.8)"/><path d="M12 22c2.7 0 5-0.9 6.7-2.4l-3.3-2.5c-.9.6-2.1 1-3.4 1-2.6 0-4.9-1.8-5.7-4.2H1v2.6C2.7 19.8 7 22 12 22z" fill="rgba(255,255,255,.8)"/><path d="M6.3 13.9A5.9 5.9 0 0 1 6 12c0-.7.1-1.3.3-1.9V7.5H3A10 10 0 0 0 2 12c0 1.6.4 3.2 1 4.5l3.3-2.6z" fill="rgba(255,255,255,.8)"/><path d="M12 6.8c1.5 0 2.8.5 3.8 1.5l2.8-2.8A9.9 9.9 0 0 0 12 2C7 2 2.7 4.2 1 7.5l3.3 2.6C5.1 8.6 7.4 6.8 12 6.8z" fill="rgba(255,255,255,.8)"/></svg>
             </a>
@@ -2525,12 +2572,8 @@
 
       <div class="footer__bottom">
         <p class="footer__copy">© 2026 Dream Bath LLC · Licensed General Contractor · All Rights Reserved</p>
-        <div class="footer__legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms &amp; Conditions</a>
-        </div>
-        <a href="https://readysetgro.io" class="footer__powered" target="_blank" rel="noopener noreferrer">
-          Powered by GRO
+        <a href="https://readysetgro.io/" class="footer__powered" target="_blank" rel="noopener noreferrer">
+          <img src="./client-assets/dream-bath/powered-by-gro_1776443776448.avif" alt="Powered by GRO">
         </a>
       </div>
 
@@ -2579,19 +2622,53 @@
       });
     });
 
-    /* ── HERO IMAGE ROTATION (bg + arch in sync) ──────────── */
+    /* ── HERO: rotation + zoom-out + parallax (combined) ───── */
     (function () {
       const bgLayers   = Array.from(document.querySelectorAll('.hero__bg'));
       const archLayers = Array.from(document.querySelectorAll('.hero__arch-img'));
-      if (!bgLayers.length || !archLayers.length) return;
-      let idx = 0;
+      const heroText   = document.querySelector('.hero__text');
+      if (!bgLayers.length) return;
+
+      const SLIDE_MS   = 7000;
+      const ZOOM_FROM  = 1.10;
+      const ZOOM_TO    = 1.0;
+      let   idx        = 0;
+      let   zoomScale  = ZOOM_FROM;
+      let   zoomRaf    = null;
+      let   zoomStart  = null;
+
+      function applyTransforms() {
+        const py = window.scrollY * 0.22;
+        bgLayers.forEach(function (bg) {
+          bg.style.transform = 'scale(' + zoomScale + ') translateY(' + py + 'px)';
+        });
+        if (heroText) heroText.style.transform = 'translateY(' + (window.scrollY * 0.14) + 'px)';
+      }
+
+      function startZoom() {
+        if (zoomRaf) cancelAnimationFrame(zoomRaf);
+        zoomStart = performance.now();
+        function tick(now) {
+          var t    = Math.min((now - zoomStart) / SLIDE_MS, 1);
+          var ease = 1 - Math.pow(1 - t, 3);
+          zoomScale = ZOOM_FROM + (ZOOM_TO - ZOOM_FROM) * ease;
+          applyTransforms();
+          if (t < 1) zoomRaf = requestAnimationFrame(tick);
+        }
+        zoomRaf = requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('scroll', applyTransforms, { passive: true });
+
+      startZoom();
       setInterval(function () {
         bgLayers[idx].classList.remove('active');
-        archLayers[idx].classList.remove('active');
+        if (archLayers[idx]) archLayers[idx].classList.remove('active');
         idx = (idx + 1) % bgLayers.length;
         bgLayers[idx].classList.add('active');
-        archLayers[idx].classList.add('active');
-      }, 3000);
+        if (archLayers[idx]) archLayers[idx].classList.add('active');
+        startZoom();
+      }, SLIDE_MS);
     }());
 
     /* ── GALLERY SLIDER ────────────────────────────── */
@@ -2633,16 +2710,7 @@
       showPage(0);
     }());
 
-    /* ── HERO PARALLAX ────────────────────────────────────── */
-    (function () {
-      const bgs = document.querySelectorAll('.hero__bg');
-      if (!bgs.length) return;
-      function applyParallax() {
-        const y = window.scrollY * 0.25;
-        bgs.forEach(function (bg) { bg.style.transform = 'translateY(' + y + 'px)'; });
-      }
-      window.addEventListener('scroll', applyParallax, { passive: true });
-    }());
+    /* parallax handled in rotation block above */
 
     /* content pre-rendered */
 
@@ -2915,6 +2983,79 @@
 
       ScrollTrigger.refresh();
     }
+  }());
+
+  </script>
+
+  <!-- Lightbox overlay — must be in DOM before the lightbox IIFE below -->
+  <div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <button class="lb-prev"  id="lb-prev"  aria-label="Previous">&#8249;</button>
+    <img class="lb-img" id="lb-img" src="" alt="Project photo">
+    <button class="lb-next"  id="lb-next"  aria-label="Next">&#8250;</button>
+  </div>
+
+  <script>
+  // ── File upload label update ──────────────────────────
+  (function() {
+    var inp = document.getElementById('contact-file-input');
+    if (!inp) return;
+    inp.addEventListener('change', function() {
+      var lbl = document.getElementById('file-label-text');
+      if (!lbl) return;
+      lbl.textContent = this.files.length > 1
+        ? this.files.length + ' files selected'
+        : this.files.length === 1 ? this.files[0].name : 'Attach photos or files (optional)';
+    });
+  }());
+
+  // ── Lightbox ──────────────────────────────────────────
+  (function() {
+    const overlay = document.getElementById('lb-overlay');
+    const img     = document.getElementById('lb-img');
+    const closeBtn= document.getElementById('lb-close');
+    const prevBtn = document.getElementById('lb-prev');
+    const nextBtn = document.getElementById('lb-next');
+    let cards = [], idx = 0;
+
+    function getUrl(card) {
+      const bg = card.querySelector('.proj-card__bg');
+      if (!bg) return '';
+      const raw = bg.style.backgroundImage || bg.style.background
+                  || window.getComputedStyle(bg).backgroundImage;
+      const m = raw.match(/url\(["']?([^"')]+)["']?\)/);
+      return m ? m[1] : '';
+    }
+    function open(i) {
+      cards = Array.from(document.querySelectorAll('.proj-card'));
+      idx = ((i % cards.length) + cards.length) % cards.length;
+      img.src = getUrl(cards[idx]);
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    document.addEventListener('click', function(e) {
+      const card = e.target.closest('.proj-card');
+      if (card && !overlay.classList.contains('is-open')) {
+        cards = Array.from(document.querySelectorAll('.proj-card'));
+        open(cards.indexOf(card));
+      }
+    });
+    closeBtn.addEventListener('click', closeLb);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLb(); });
+    prevBtn.addEventListener('click', function() { open(idx - 1); });
+    nextBtn.addEventListener('click', function() { open(idx + 1); });
+    document.addEventListener('keydown', function(e) {
+      if (!overlay.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft')  open(idx - 1);
+      if (e.key === 'ArrowRight') open(idx + 1);
+    });
   }());
   </script>
 
