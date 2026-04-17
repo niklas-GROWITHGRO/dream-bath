@@ -214,7 +214,7 @@
       align-items: center;
     }
     .nav__logo img {
-      height: 60px;
+      height: 72px;
       width: auto;
       transition: filter .3s;
     }
@@ -430,8 +430,8 @@
     .hero__arch-img--2 { background-image: url('./hero-slide-2.avif'); }
     .hero__arch-img--3 { background-image: url('./hero-slide-3.avif'); }
     @keyframes hero-zoom {
-      from { transform: scale(1); }
-      to   { transform: scale(1.08); }
+      from { transform: scale(1.08); }
+      to   { transform: scale(1); }
     }
     /* Vignette at base of arch */
     .hero__arch::after {
@@ -1135,10 +1135,112 @@
       .projects { padding: 80px 0; }
       .projects__header { flex-direction: column; align-items: flex-start; }
       .projects__grid { grid-template-columns: 1fr; }
+      .gallery-slider__grid { grid-template-columns: 1fr !important; }
     }
     @media (min-width: 600px) and (max-width: 900px) {
       .projects__grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-slider__grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
+
+    /* ── Gallery Slider ── */
+    .gallery-slider { margin-top: 48px; }
+    .gallery-slider__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--stone-dark);
+      margin-bottom: 20px;
+    }
+    .gallery-slider__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery-slider__controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .gallery-slider__btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--stone-mid);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, border-color .2s, color .2s;
+      color: var(--charcoal);
+    }
+    .gallery-slider__btn:hover { background: var(--charcoal); border-color: var(--charcoal); color: var(--white); }
+    .gallery-slider__btn svg { width: 18px; height: 18px; }
+    .gallery-dots { display: flex; gap: 8px; align-items: center; }
+    .gallery-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--stone-mid);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .gallery-dot.active { background: var(--charcoal); transform: scale(1.3); }
+
+    /* ── Contact form additions ── */
+    .contact-form .file-upload-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .contact-form input[type="file"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--stone);
+      border-radius: var(--r-sm);
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      cursor: pointer;
+    }
+    .cta-phone-inline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-decoration: none;
+    }
+    .cta-phone-inline:hover { color: var(--gold-dark); }
+    .cta-phone-inline svg { flex-shrink: 0; }
+    .btn-call-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border: 1px solid var(--gold);
+      border-radius: var(--r-sm);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gold);
+      background: transparent;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+      margin-top: 12px;
+    }
+    .btn-call-outline:hover { background: var(--gold); color: var(--white); }
+    .phone-icon-sm { width: 14px; height: 14px; vertical-align: middle; margin-right: 5px; }
 
     /* ═══════════════════════════════════════════════════════════
        §8 — CLIENT TESTIMONIALS
@@ -1622,10 +1724,12 @@
     .circ-badge__logo-img {
       position: relative;
       z-index: 1;
-      width: 110px;
+      width: 135px;
       height: auto;
       filter: brightness(0) invert(1);
-      opacity: 0.92;
+      opacity: 0.95;
+      margin-top: 10px;
+      padding-bottom: 6px;
     }
     @keyframes circ-spin {
       to { transform: rotate(360deg); }
@@ -1827,7 +1931,7 @@
         </nav>
 
         <div class="nav__right">
-          <a href="tel:+18124557384" class="nav__phone">(812) 455-7384</a>
+          <a href="tel:+18124557384" class="nav__phone"><svg class="phone-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(812) 455-7384</a>
           <a href="#contact" class="nav__cta">Get a Free Quote</a>
           <button class="nav__ham" id="navHam" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -1881,7 +1985,7 @@
         </p>
 
         <div class="hero__actions reveal d3">
-          <a href="#contact" class="btn btn-gold">Request a Consultation</a>
+          <a href="tel:+18124557384" class="btn btn-gold"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call us for a Consultation</a>
           <a href="#gallery" class="btn btn-outline-white">Explore Our Work</a>
         </div>
       </div>
@@ -1906,7 +2010,7 @@
                     font-weight="500" letter-spacing="3"
                     fill="rgba(255,255,255,0.70)">
                 <textPath href="#hero-circle" startOffset="0%">
-                  PRECISION CRAFTSMANSHIP · DREAM BATH · EST. 1999 · EVANSVILLE IN ·
+                  25 YEARS OF CONSTRUCTION · CRAFTSMANSHIP · PRECISION · DREAM BATH ·
                 </textPath>
               </text>
             </svg>
@@ -1935,14 +2039,14 @@
 
           <!-- Left: text -->
           <div>
-            <p class="section-label intro__label reveal">Precision Craftsmanship Since 1999</p>
+            <p class="section-label intro__label reveal">Precision Craftsmanship</p>
 
             <h2 class="section-h2 intro__h2 reveal d1">
               Evansville's premier<br>bathroom renovation<br>specialists.
             </h2>
 
             <p class="intro__body reveal d2">
-              Since 1999, Dream Bath has transformed hundreds of Evansville homes — from modest refresh projects to complete master suite reinventions. As a licensed General Contractor with over 25 years in residential renovation, we self-perform all critical work in-house, ensuring quality at every stage.
+              With 25 years of construction experience, Dream Bath has transformed hundreds of Evansville homes — from modest refresh projects to complete master suite reinventions. As a licensed General Contractor, we self-perform all critical work in-house, ensuring quality at every stage.
             </p>
 
             <!-- Credential list — matching Belle's structured list format -->
@@ -2104,24 +2208,62 @@
         </div>
 
         <div class="projects__grid" id="portfolio-grid">
-  <article class="proj-card reveal">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_8363_1775672482458.jpg') center/cover no-repeat"></div>
-  </article>
-  <article class="proj-card reveal d1">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_8057_1775672482457.jpg') center/cover no-repeat"></div>
-  </article>
-  <article class="proj-card reveal d2">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_7836_1775672482453.jpg') center/cover no-repeat"></div>
-  </article>
-  <article class="proj-card reveal d1">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_6092_1775672482452.jpg') center/cover no-repeat"></div>
-  </article>
-  <article class="proj-card reveal d2">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_2564_1775672482444.JPG') center/cover no-repeat"></div>
-  </article>
-  <article class="proj-card reveal d3">
-    <div class="proj-card__bg" style="background:url('./client-assets/2/IMG_1888_1775672482433.jpg') center/cover no-repeat"></div>
-  </article>
+          <!-- content pre-rendered -->
+        </div>
+
+        <!-- Extended gallery — all available project photos with pagination -->
+        <div class="gallery-slider" id="gallery-slider">
+          <p class="gallery-slider__label">Browse All Projects</p>
+          <div class="gallery-slider__grid" id="gallery-track">
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8363_1776439542128.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8057_1776439542121.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8375_1776439542139.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1882_1776439541935.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1886_1776439541961.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_3898_1776439542047.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2240_1776439541983.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_6091_1776439542091.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_0343_1776439541885.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8378_1776439542146.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8379_1776439542154.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8053_1776439542101.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8055_1776439542113.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1883_1776439541944.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1885_1776439541953.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1887_1776439541966.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2239_1776439541976.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2241_1776439541990.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2242_1776439541997.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2243_1776439542005.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2520_1776439542012.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2534_1776439542027.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2565_1776439542037.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2574_1776439542037.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_3899_1776439542057.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_3915_1776439542067.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_3916_1776439542071.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_5121_1776439542081.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_0088_1776439541859.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_0090_1776439541867.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_0101_1776439541877.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1659_1776439541905.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1759_1776439541911.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1761_1776439541917.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1762_1776439541923.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_1763_1776439541929.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/Frame_165678__1__1776439541854.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/60014056480__7661E3AA-BA70-4436-A116-BD3AB1D70589_1776439541809.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/66482847232__8BA88003-E85B-461A-8B98-B6FB2808F150_1776439541842.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+          </div>
+          <div class="gallery-slider__controls">
+            <button class="gallery-slider__btn" id="gallery-prev" aria-label="Previous page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="gallery-dots" id="gallery-dots"></div>
+            <button class="gallery-slider__btn" id="gallery-next" aria-label="Next page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -2201,10 +2343,13 @@
           <p class="cta-band__sub reveal d2">
             No pressure. No surprises. Just honest craftsmanship and a space you'll love for decades. We respond within one business day.
           </p>
-          <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST">
+          <a href="tel:+18124557384" class="cta-phone-inline reveal d2">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (812) 455-7384
+          </a>
+          <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Quote Request – Dream Bath">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
             <div class="contact-form__row">
               <input type="text" name="name" placeholder="Your name" required>
               <input type="email" name="email" placeholder="Email address">
@@ -2217,8 +2362,14 @@
               </select>
             </div>
             <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+            <label class="file-upload-label">Attach photos or files (optional)</label>
+            <input type="file" name="attachment" accept="image/*,.pdf,.doc,.docx" multiple>
             <button type="submit" class="btn btn-gold">Send Message</button>
           </form>
+          <a href="tel:+18124557384" class="btn-call-outline reveal d4">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Prefer to call? (812) 455-7384
+          </a>
         </div>
       </div>
     </section>
@@ -2241,16 +2392,6 @@
             </button>
             <div class="faq__a" role="region">
               <p class="faq__a-inner">We specialize exclusively in residential bathroom transformations, ranging from minor updates with high-end finishes to full luxury remodels. Our expertise includes high-end tile showers, custom rain heads, and specialized layouts tailored to your home.</p>
-            </div>
-          </div>
-
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">
-              How much does a typical bathroom remodel cost?
-              <span class="faq__icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq__a" role="region">
-              <p class="faq__a-inner">Bathroom remodeling projects typically range from $9,000 to $12,000+. A basic remodel with standard materials often starts around $9,000, while projects featuring higher-end finishes and custom designs generally begin at $12,000. Final pricing depends on your specific material choices and the level of customization required.</p>
             </div>
           </div>
 
@@ -2338,8 +2479,8 @@
           <address class="footer__brand-addr" style="font-style:normal;">
             Licensed General Contractor · <span id="footer-state">Indiana</span><br>
             <span id="footer-city">Evansville, IN</span><br>
-            <a href="tel:+18124557384" id="footer-phone">(812) 455-7384</a><br>
-            <a href="mailto:hello@dreambath.com" id="footer-email">hello@dreambath.com</a><br>
+            <a href="tel:+18124557384" id="footer-phone"><svg class="phone-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(812) 455-7384</a><br>
+            <a href="mailto:dreambath.evv@gmail.com" id="footer-email">dreambath.evv@gmail.com</a><br>
             <span id="footer-hours">Mon–Fri 8–4</span>
           </address>
           <div class="footer__social">
@@ -2451,6 +2592,45 @@
         bgLayers[idx].classList.add('active');
         archLayers[idx].classList.add('active');
       }, 3000);
+    }());
+
+    /* ── GALLERY SLIDER ────────────────────────────── */
+    (function () {
+      const PAGE = 9;
+      const track = document.getElementById('gallery-track');
+      const dotsEl = document.getElementById('gallery-dots');
+      const prevBtn = document.getElementById('gallery-prev');
+      const nextBtn = document.getElementById('gallery-next');
+      if (!track || !dotsEl) return;
+      const cards = Array.from(track.querySelectorAll('.proj-card'));
+      if (!cards.length) return;
+      const totalPages = Math.ceil(cards.length / PAGE);
+      let current = 0;
+
+      function showPage(p) {
+        current = ((p % totalPages) + totalPages) % totalPages;
+        cards.forEach(function (c, i) {
+          c.style.display = (i >= current * PAGE && i < (current + 1) * PAGE) ? '' : 'none';
+        });
+        dotsEl.querySelectorAll('.gallery-dot').forEach(function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      for (var i = 0; i < totalPages; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Page ' + (i + 1));
+        (function (idx) {
+          dot.addEventListener('click', function () { showPage(idx); });
+        }(i));
+        dotsEl.appendChild(dot);
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { showPage(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { showPage(current + 1); });
+
+      showPage(0);
     }());
 
     /* ── HERO PARALLAX ────────────────────────────────────── */
