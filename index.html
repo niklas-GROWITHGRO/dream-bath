@@ -1938,9 +1938,10 @@
         padding-bottom: 8px;
       }
       .gallery-slider__grid .proj-card {
-        flex: 0 0 82vw;
+        flex: 0 0 82vw !important;
         scroll-snap-align: start;
-        height: 240px;
+        height: 240px !important;
+        display: flex !important; /* override JS pagination hiding */
       }
       .gallery-slider__controls { display: none; }
     }
