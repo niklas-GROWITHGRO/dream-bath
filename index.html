@@ -3057,5 +3057,70 @@
   }());
   </script>
 
+  <!-- Contact form handler -->
+  <script>
+  (function() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const origText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const fileInput = document.getElementById('contact-file-input');
+      const hasFile = fileInput && fileInput.files.length > 0;
+      const isDashboard = window.location.pathname.startsWith('/sites/');
+
+      try {
+        let res;
+        if (isDashboard) {
+          res = await fetch('/api/public/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name:    form.querySelector('[name="name"]').value,
+              email:   form.querySelector('[name="email"]').value,
+              phone:   form.querySelector('[name="phone"]').value,
+              service: form.querySelector('[name="service"]').value,
+              message: form.querySelector('[name="message"]').value,
+            })
+          });
+        } else {
+          const fd = new FormData();
+          fd.append('name',    form.querySelector('[name="name"]').value);
+          fd.append('email',   form.querySelector('[name="email"]').value);
+          fd.append('phone',   form.querySelector('[name="phone"]').value);
+          fd.append('service', form.querySelector('[name="service"]').value);
+          fd.append('message', form.querySelector('[name="message"]').value);
+          fd.append('_subject', 'New Quote Request – Dream Bath');
+          if (hasFile) fd.append('attachment', fileInput.files[0]);
+          res = await fetch('https://formsubmit.co/ajax/dreambath.evv@gmail.com', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: fd
+          });
+        }
+
+        const data = await res.json();
+        if (!res.ok && !data.success && !data.ok) throw new Error(data.error || 'Submission failed');
+
+        form.innerHTML = '<div class="contact-form__confirm" style="padding:40px 0;font-size:17px;display:flex;flex-direction:column;align-items:center;gap:16px"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Thanks! We\'ll be in touch within one business day.</span></div>';
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = origText;
+        const errEl = form.querySelector('.contact-form__error') || document.createElement('p');
+        errEl.className = 'contact-form__error';
+        errEl.style.cssText = 'color:#e05c5c;font-size:13px;margin-top:8px;text-align:center';
+        errEl.textContent = 'Something went wrong — please try again or call us directly.';
+        if (!form.querySelector('.contact-form__error')) form.appendChild(errEl);
+      }
+    });
+  }());
+  </script>
+
 </body>
 </html>
