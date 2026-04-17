@@ -538,20 +538,12 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .hero__inner { grid-template-columns: 1fr; min-height: auto; }
-      .hero__text { padding: 110px 28px 36px; }
-      .hero__arch-wrap { padding: 0 28px 64px; justify-content: center; }
-      .hero__arch { max-width: 520px; aspect-ratio: 3/3.8; border-radius: 800px 800px 0 0; }
+      .hero__inner { grid-template-columns: 1fr; min-height: 100dvh; align-items: start; }
+      .hero__text { padding: 110px 28px 80px; }
+      .hero__arch-wrap { display: none; }
     }
     @media (max-width: 600px) {
-      .hero__text { padding: 96px 20px 28px; }
-      .hero__arch-wrap { padding: 0 0 56px; }
-      .hero__arch {
-        max-width: 100%;
-        aspect-ratio: 3/4.2;
-        border-radius: 400px 400px 0 0;
-        box-shadow: 0 32px 64px rgba(0,0,0,.5);
-      }
+      .hero__text { padding: 96px 20px 72px; }
       .hero__scroll { display: none; }
       .hero__actions { flex-direction: column; align-items: stretch; gap: 12px; }
     }
@@ -2646,7 +2638,7 @@
         bgLayers.forEach(function (bg) {
           bg.style.transform = 'scale(' + zoomScale + ') translateY(' + py + 'px)';
         });
-        if (heroText) heroText.style.transform = 'translateY(' + (window.scrollY * 0.14) + 'px)';
+        if (heroText && window.innerWidth > 900) heroText.style.transform = 'translateY(' + (window.scrollY * 0.14) + 'px)';
       }
 
       function startZoom() {
