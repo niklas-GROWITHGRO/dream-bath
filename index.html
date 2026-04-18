@@ -2490,11 +2490,6 @@
               </select>
             </div>
             <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
-            <input type="file" id="contact-file-input" name="attachment" accept="image/*,.pdf,.doc,.docx" multiple style="display:none">
-            <label for="contact-file-input" class="file-upload-trigger">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-              <span id="file-label-text">Attach photos or files (optional)</span>
-            </label>
             <button type="submit" class="btn btn-gold">Send Message</button>
           </form>
         </div>
@@ -3073,19 +3068,6 @@
   </div>
 
   <script>
-  // ── File upload label update ──────────────────────────
-  (function() {
-    var inp = document.getElementById('contact-file-input');
-    if (!inp) return;
-    inp.addEventListener('change', function() {
-      var lbl = document.getElementById('file-label-text');
-      if (!lbl) return;
-      lbl.textContent = this.files.length > 1
-        ? this.files.length + ' files selected'
-        : this.files.length === 1 ? this.files[0].name : 'Attach photos or files (optional)';
-    });
-  }());
-
   // ── Lightbox ──────────────────────────────────────────
   (function() {
     const overlay = document.getElementById('lb-overlay');
@@ -3143,19 +3125,13 @@
     if (!form) return;
 
     form.addEventListener('submit', async function(e) {
-      const fileInput = document.getElementById('contact-file-input');
-      const hasFile = fileInput && fileInput.files.length > 0;
-      const isDashboard = window.location.pathname.startsWith('/sites/');
-
-      // Files attached on live site: let the native POST go through so FormSubmit.co
-      // receives the attachments (their AJAX endpoint does not support file uploads).
-      if (hasFile && !isDashboard) return;
-
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       const origText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending…';
+
+      const isDashboard = window.location.pathname.startsWith('/sites/');
 
       try {
         let res;
