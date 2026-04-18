@@ -10,6 +10,78 @@
   <link rel="apple-touch-icon" href="./dream_bath.svg" />
   <meta name="theme-color" content="#1c1916" />
 
+  <!-- SEO -->
+  <link rel="canonical" href="https://dreambath.com" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="bathroom remodeling Evansville IN, shower remodel Evansville, bath renovation Indiana, licensed general contractor Evansville, custom bathroom design" />
+  <meta name="author" content="Dream Bath LLC" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://dreambath.com" />
+  <meta property="og:title" content="Dream Bath | Bathroom Remodeling Evansville, IN" />
+  <meta property="og:description" content="Award-winning bathroom remodeling in Evansville, IN. Licensed General Contractor. 25+ years of precision craftsmanship. Call (812) 455-7384." />
+  <meta property="og:image" content="https://dreambath.com/hero-slide-1.avif" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Dream Bath" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dream Bath | Bathroom Remodeling Evansville, IN" />
+  <meta name="twitter:description" content="Award-winning bathroom remodeling in Evansville, IN. Licensed General Contractor. 25+ years of precision craftsmanship." />
+  <meta name="twitter:image" content="https://dreambath.com/hero-slide-1.avif" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://dreambath.com/#business",
+        "name": "Dream Bath LLC",
+        "description": "Award-winning bathroom remodeling in Evansville, IN. Licensed General Contractor with 25+ years of precision craftsmanship.",
+        "url": "https://dreambath.com",
+        "telephone": "+18124557384",
+        "email": "dreambath.evv@gmail.com",
+        "logo": "https://dreambath.com/dream_bath.svg",
+        "image": "https://dreambath.com/hero-slide-1.avif",
+        "priceRange": "$$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Evansville",
+          "addressRegion": "IN",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 37.9748,
+          "longitude": -87.5558
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Evansville" },
+          { "@type": "State", "name": "Indiana" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Bathroom Remodeling Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bathroom Remodeling" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shower Installation & Remodeling" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Tile Work" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vanity & Fixture Installation" } }
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/p/Dream-Bath-LLC-61579276388734/"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Fonts: Playfair Display (luxury serif) + DM Sans (clean body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -2404,6 +2476,8 @@
           <form class="contact-form reveal d3" id="contact-form" action="https://formsubmit.co/dreambath.evv@gmail.com" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Quote Request – Dream Bath">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://dreambath.com/thank-you">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
             <div class="contact-form__row">
               <input type="text" name="name" placeholder="Your name" required>
               <input type="email" name="email" placeholder="Email address">
@@ -3069,15 +3143,19 @@
     if (!form) return;
 
     form.addEventListener('submit', async function(e) {
+      const fileInput = document.getElementById('contact-file-input');
+      const hasFile = fileInput && fileInput.files.length > 0;
+      const isDashboard = window.location.pathname.startsWith('/sites/');
+
+      // Files attached on live site: let the native POST go through so FormSubmit.co
+      // receives the attachments (their AJAX endpoint does not support file uploads).
+      if (hasFile && !isDashboard) return;
+
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       const origText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending…';
-
-      const fileInput = document.getElementById('contact-file-input');
-      const hasFile = fileInput && fileInput.files.length > 0;
-      const isDashboard = window.location.pathname.startsWith('/sites/');
 
       try {
         let res;
@@ -3095,13 +3173,14 @@
           });
         } else {
           const fd = new FormData();
-          fd.append('name',    form.querySelector('[name="name"]').value);
-          fd.append('email',   form.querySelector('[name="email"]').value);
-          fd.append('phone',   form.querySelector('[name="phone"]').value);
-          fd.append('service', form.querySelector('[name="service"]').value);
-          fd.append('message', form.querySelector('[name="message"]').value);
+          fd.append('name',     form.querySelector('[name="name"]').value);
+          fd.append('email',    form.querySelector('[name="email"]').value);
+          fd.append('phone',    form.querySelector('[name="phone"]').value);
+          fd.append('service',  form.querySelector('[name="service"]').value);
+          fd.append('message',  form.querySelector('[name="message"]').value);
           fd.append('_subject', 'New Quote Request – Dream Bath');
-          if (hasFile) fd.append('attachment', fileInput.files[0]);
+          fd.append('_captcha', 'false');
+          fd.append('_honey',   '');
           res = await fetch('https://formsubmit.co/ajax/dreambath.evv@gmail.com', {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
