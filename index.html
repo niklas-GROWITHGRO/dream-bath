@@ -1233,23 +1233,14 @@
       .projects { padding: 80px 0; }
       .projects__header { flex-direction: column; align-items: flex-start; }
       .projects__grid { grid-template-columns: 1fr; }
-      .gallery-slider__grid { grid-template-columns: 1fr !important; }
     }
-    @media (min-width: 600px) and (max-width: 900px) {
+    @media (min-width: 601px) and (max-width: 900px) {
       .projects__grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-slider__grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
 
     /* ── Gallery Slider ── */
-    .gallery-slider { margin-top: 48px; }
-    .gallery-slider__label {
-      font-family: var(--sans);
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--stone-dark);
-      margin-bottom: 20px;
-    }
+    .gallery-slider { margin-top: 36px; }
     .gallery-slider__grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -2012,23 +2003,17 @@
     .proj-card { cursor:pointer; }
 
     /* ── Mobile gallery — horizontal swipe ───────────── */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .gallery-slider__grid {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 12px;
-        padding-bottom: 8px;
+        display: block !important;
       }
       .gallery-slider__grid .proj-card {
-        flex: 0 0 82vw !important;
-        scroll-snap-align: start;
-        height: 420px !important;
-        display: flex !important; /* override JS pagination hiding */
+        width: 100% !important;
+        aspect-ratio: 4/5 !important;
+        border-radius: 12px;
       }
-      .gallery-slider__controls { display: none; }
+      .gallery-slider__btn { display: none !important; }
+      .gallery-slider__controls { display: flex; justify-content: center; margin-top: 20px; }
     }
   </style>
 </head>
@@ -2340,14 +2325,13 @@
           <a href="tel:+18124557384" class="btn btn-outline-dark reveal d2" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Us Today</a>
         </div>
 
-        <div class="projects__grid" id="portfolio-grid">
-          <!-- content pre-rendered -->
-        </div>
-
         <!-- Extended gallery — all available project photos with pagination -->
         <div class="gallery-slider" id="gallery-slider">
-          <p class="gallery-slider__label">Browse All Projects</p>
           <div class="gallery-slider__grid" id="gallery-track">
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/A9739660-3129-4116-BF9A-869BEC1ABDF9_1777035904979.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/A6EA94FB-118F-4CC0-A088-43E25DC8B5FF_1777035904972.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/7E55FCC3-D030-403C-877F-D45659BF2325_1777035904966.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
+            <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/4CD0CAE4-CB19-493D-BBA9-9283A06E6247_1777035904953.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
             <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_2241_1776439541990.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
             <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8363_1776439542128.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
             <article class="proj-card"><div class="proj-card__bg" style="background:url('./client-assets/dream-bath/IMG_8057_1776439542121.avif') center/cover no-repeat"></div><div class="proj-card__overlay"></div></article>
@@ -2758,7 +2742,6 @@
 
     /* ── GALLERY SLIDER ────────────────────────────── */
     (function () {
-      const PAGE = 9;
       const track = document.getElementById('gallery-track');
       const dotsEl = document.getElementById('gallery-dots');
       const prevBtn = document.getElementById('gallery-prev');
@@ -2766,31 +2749,62 @@
       if (!track || !dotsEl) return;
       const cards = Array.from(track.querySelectorAll('.proj-card'));
       if (!cards.length) return;
-      const totalPages = Math.ceil(cards.length / PAGE);
       let current = 0;
 
+      function isMobile() { return window.matchMedia('(max-width: 600px)').matches; }
+      function isTablet() { return window.matchMedia('(min-width: 601px) and (max-width: 900px)').matches; }
+      function getPage() { return isMobile() ? 1 : isTablet() ? 6 : 9; }
+
+      function buildDots(totalPages) {
+        dotsEl.innerHTML = '';
+        if (isMobile() && totalPages > 1) {
+          var MAX = 5, half = Math.floor(MAX / 2);
+          var start = Math.max(0, Math.min(current - half, totalPages - MAX));
+          var end = Math.min(totalPages, start + MAX);
+          for (var i = start; i < end; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'gallery-dot' + (i === current ? ' active' : '');
+            dot.setAttribute('aria-label', 'Image ' + (i + 1));
+            (function (idx) { dot.addEventListener('click', function () { showPage(idx); }); }(i));
+            dotsEl.appendChild(dot);
+          }
+        } else {
+          for (var i = 0; i < totalPages; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'gallery-dot' + (i === current ? ' active' : '');
+            dot.setAttribute('aria-label', 'Page ' + (i + 1));
+            (function (idx) { dot.addEventListener('click', function () { showPage(idx); }); }(i));
+            dotsEl.appendChild(dot);
+          }
+        }
+      }
+
       function showPage(p) {
+        const PAGE = getPage();
+        const totalPages = Math.ceil(cards.length / PAGE);
         current = ((p % totalPages) + totalPages) % totalPages;
         cards.forEach(function (c, i) {
           c.style.display = (i >= current * PAGE && i < (current + 1) * PAGE) ? '' : 'none';
         });
-        dotsEl.querySelectorAll('.gallery-dot').forEach(function (d, i) {
-          d.classList.toggle('active', i === current);
-        });
-      }
-
-      for (var i = 0; i < totalPages; i++) {
-        var dot = document.createElement('button');
-        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Page ' + (i + 1));
-        (function (idx) {
-          dot.addEventListener('click', function () { showPage(idx); });
-        }(i));
-        dotsEl.appendChild(dot);
+        buildDots(totalPages);
       }
 
       if (prevBtn) prevBtn.addEventListener('click', function () { showPage(current - 1); });
       if (nextBtn) nextBtn.addEventListener('click', function () { showPage(current + 1); });
+
+      /* swipe support */
+      var touchStartX = 0;
+      track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) showPage(current + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { showPage(0); }, 200);
+      });
 
       showPage(0);
     }());
@@ -2973,14 +2987,6 @@
       }
 
       /* ── Portfolio — wide circular spread ─────────── */
-      watchGrid('portfolio-grid', '.proj-card', {
-        radius: 360, radiusMob: 60,
-        hFactor: 0.30, spread: 0.80,
-        yBase: 60, yBaseMob: 20,
-        rotateDeg: 5, scaleFrom: 0.88,
-        stagger: 0.07, duration: 1.15,
-        start: 'top 80%'
-      });
 
       /* ── Services — gentle upward arc ─────────────── */
       watchGrid('services-grid', '.svc-card', {
