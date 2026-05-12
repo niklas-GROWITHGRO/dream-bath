@@ -3389,5 +3389,45 @@
   })();
   </script>
 
+  <!-- Floating review button -->
+  <style>
+    .float-review {
+      position: fixed;
+      bottom: 32px;
+      left: 28px;
+      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      background: #8898AC;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-decoration: none;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 8px 32px rgba(0,0,0,.28);
+      transition: background .25s, transform .25s, box-shadow .25s;
+    }
+    .float-review:hover {
+      background: #6B7C8F;
+      border-color: #6B7C8F;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.32);
+    }
+    .float-review__star {
+      color: #F4B942;
+      font-size: 15px;
+      line-height: 1;
+    }
+  </style>
+  <a class="float-review" href="https://g.page/r/CWuuTVehZn_4EBM/review" target="_blank" rel="noopener noreferrer" aria-label="Leave us a Google review">
+    <span class="float-review__star">★</span>
+    Leave us a review
+  </a>
+
 </body>
 </html>
